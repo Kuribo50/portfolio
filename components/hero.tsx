@@ -13,17 +13,13 @@ export default function Hero() {
     <section id="Inicio" className="relative w-full min-h-[105vh] flex flex-col justify-center px-6 md:px-12 lg:px-24 py-16 overflow-hidden">
       <div className="container relative mx-auto max-w-7xl">
         <motion.div
-          className="flex flex-col items-start space-y-6"
+          className="flex flex-col items-start space-y-6 sm:space-y-8"
         >
           <div className="flex items-center space-x-2 text-purple-400">
-            <span className="h-px w-12 bg-purple-400"></span>
           </div>
 
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-none"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.2 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight sm:leading-none mb-4 sm:mb-6"
           >
             <span className="block">Martin Beroiza</span>
             <span className="block mt-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600 leading-normal">

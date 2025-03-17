@@ -53,20 +53,14 @@ export default function Navbar() {
         }
       }
 
-      // Check which section is currently in view
       const sections = NAVIGATION_ITEMS.map((item) => item.href.substring(1))
       let currentActive = activeSection
-      
-      // Reset found flag for each scroll check
       let found = false
-      
-      // Check sections in reverse order (to handle overlapping sections)
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i]
         const element = document.getElementById(section)
         if (element) {
           const rect = element.getBoundingClientRect()
-          // Adjust the detection area to be more generous
           if (rect.top <= 300 && rect.bottom >= 100) {
             currentActive = section
             found = true
@@ -75,25 +69,21 @@ export default function Navbar() {
         }
       }
       
-      // If no section is found in view and we're at the top, set to Inicio
       if (!found && window.scrollY < 300) {
         currentActive = "Inicio"
       }
       
-      // Only update if changed to avoid unnecessary renders
       if (currentActive !== activeSection) {
         setActiveSection(currentActive)
       }
     }
 
     window.addEventListener("scroll", handleScroll)
-    // Trigger once on mount to set initial active section
     handleScroll()
     
     return () => window.removeEventListener("scroll", handleScroll)
   }, [activeSection])
 
-  // Cerrar menú móvil al hacer clic fuera
   const handleOutsideClick = useCallback(
     (e: MouseEvent) => {
       if (
@@ -113,7 +103,6 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleOutsideClick)
   }, [handleOutsideClick])
 
-  // Prevenir scroll cuando el menú móvil está abierto
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden"
@@ -169,7 +158,7 @@ export default function Navbar() {
     >
       <div
         className={`${
-          isScrolled ? "bg-black/90 backdrop-blur-lg border border-white/10 rounded-xl shadow-xl" : "bg-transparent"
+          isScrolled ? "bg-black/90 backdrop-blur-lg rounded-xl shadow-xl" : "bg-transparent"
         } transition-all duration-300 px-4 md:px-6`}
       >
         <div className="max-w-6xl mx-auto">
@@ -272,7 +261,7 @@ export default function Navbar() {
           <motion.div
             ref={mobileMenuRef}
             className="absolute top-full left-0 right-0 bg-black/95 backdrop-blur-xl z-40 
-                  rounded-b-xl border-x border-b border-white/10 shadow-xl overflow-hidden"
+                  rounded-b-xl shadow-xl overflow-hidden"
             variants={menuVariants}
             initial="closed"
             animate="open"
