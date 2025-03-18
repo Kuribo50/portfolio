@@ -46,7 +46,7 @@ export default function Timeline() {
           transition={{ duration: 0.6 }}
           className="text-left mb-12 md:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600 mb-3 md:mb-5 pb-1">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#6A4780] mb-3 md:mb-5 pb-1">
             Mi Trayectoria
           </h2>
           <p className="text-white/80 text-base md:text-lg max-w-2xl">
@@ -79,26 +79,26 @@ export default function Timeline() {
               {/* Punto de la timeline */}
               <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-8 h-8 md:w-12 md:h-12 rounded-full bg-black/40 backdrop-blur-sm border-2 border-purple-600 flex items-center justify-center z-10 shadow-lg shadow-purple-500/20">
                 {item.type === "work" ? (
-                  <Briefcase className="w-3 h-3 md:w-5 md:h-5 text-purple-400" />
+                  <Briefcase className="w-3 h-3 md:w-5 md:h-5 text-pink-400" />
                 ) : (
-                  <GraduationCap className="w-3 h-3 md:w-5 md:h-5 text-purple-400" />
+                  <GraduationCap className="w-3 h-3 md:w-5 md:h-5 text-pink-400" />
                 )}
               </div>
 
               {/* Contenido */}
               <div className={`w-full pl-12 md:pl-0 md:w-1/2 ${index % 2 === 0 ? "md:pr-20" : "md:pl-20"}`}>
                 <motion.div 
-                  className="bg-black/20 backdrop-blur-sm p-5 sm:p-6 md:p-7 rounded-xl border border-[#2a2a3e] hover:border-purple-500 transition-all duration-300 hover:-translate-y-1"
+                  className="bg-black/20 backdrop-blur-sm p-5 sm:p-6 md:p-7 rounded-xl border border-[#2a2a3e] hover:border-purple-500 transition-all duration-300 hover:-translate-y-1 neon-border glass-card timeline-item"
                   style={{
                     boxShadow: "0 0 20px rgba(168, 85, 247, 0.3)"
                   }}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-purple-900/30 text-purple-300 border border-purple-800 mb-3">
+                  <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-pink-600/30 text-pink-300 border border-pink-800 mb-3">
                     {item.year}
                   </span>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-white">{item.title}</h3>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-[#6A4780]">{item.title}</h3>
                   <p className="text-purple-400 mb-4 text-sm sm:text-base">{item.company}</p>
                   <p className="text-white/80 text-xs sm:text-sm md:text-base leading-relaxed">{item.description}</p>
                 </motion.div>

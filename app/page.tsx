@@ -10,8 +10,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 export default function Home() {
   return (
-    <ThemeProvider>
-      <main>
+      <main className="flex flex-col min-h-screen" >
         <Navbar />
         <Hero />
         <TechStack />
@@ -21,7 +20,6 @@ export default function Home() {
         <Contact />
         <Footer />
       </main>
-    </ThemeProvider>
   )
 }
 

@@ -1,11 +1,14 @@
-"use client"
+'use client'
 
-import { createContext, useContext, useEffect, useState } from "react"
+import * as React from 'react'
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 
-type Theme = "light" | "dark"
+type Theme = 'dark' | 'light'
 
 type ThemeProviderProps = {
-  children: React.ReactNode
+  children: ReactNode
+  defaultTheme?: Theme
+  storageKey?: string
 }
 
 type ThemeProviderState = {
@@ -14,28 +17,53 @@ type ThemeProviderState = {
 }
 
 const initialState: ThemeProviderState = {
-  theme: "light",
+  theme: 'dark',
   setTheme: () => null,
 }
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(() => {
-    if (typeof window !== "undefined") {
-      return (localStorage.getItem("theme") as Theme) || "light"
-    }
-    return "light"
-  })
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+  children,
+  defaultTheme = 'dark',
+  storageKey = 'theme',
+  ...props
+}) => {
+  const [theme, setTheme] = useState<Theme>(defaultTheme)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const root = window.document.documentElement
-    root.setAttribute("data-theme", theme)
-    localStorage.setItem("theme", theme)
-  }, [theme])
+    const savedTheme = localStorage.getItem(storageKey)
+    if (savedTheme && (savedTheme === 'dark' || savedTheme === 'light')) {
+      setTheme(savedTheme)
+    } else {
+      localStorage.setItem(storageKey, defaultTheme)
+    }
+    setMounted(true)
+  }, [defaultTheme, storageKey])
+
+  useEffect(() => {
+    if (mounted) {
+      document.documentElement.setAttribute('data-theme', theme)
+      localStorage.setItem(storageKey, theme)
+    }
+  }, [theme, storageKey, mounted])
+
+  if (!mounted) {
+    return <>{children}</>
+  }
+
+  const value = {
+    theme,
+    setTheme: (theme: Theme) => {
+      setTheme(theme)
+      document.documentElement.setAttribute('data-theme', theme)
+      localStorage.setItem(storageKey, theme)
+    },
+  }
 
   return (
-    <ThemeProviderContext.Provider value={{ theme, setTheme }}>
+    <ThemeProviderContext.Provider value={value} {...props}>
       {children}
     </ThemeProviderContext.Provider>
   )
@@ -43,7 +71,10 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
 
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext)
-  if (context === undefined)
-    throw new Error("useTheme must be used within a ThemeProvider")
+
+  if (context === undefined) {
+    throw new Error('useTheme must be used within a ThemeProvider')
+  }
+
   return context
 }

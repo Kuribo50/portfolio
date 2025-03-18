@@ -144,11 +144,9 @@ const TechCard = ({ tech, borderColorClass }: { tech: any, borderColorClass: str
   return (
     <motion.div
       key={tech.name}
-      whileHover={{ 
-        scale: 1.05, 
-        boxShadow: "0 0 15px rgba(255, 255, 255, 0.5)"
-      }}
-      className={`p-4 flex items-center justify-center flex-col bg-transparent backdrop-blur-sm rounded-xl border border-[#2a2a3e] transition-all duration-300 h-28 hover:border-${borderColorClass} tech-icon-container ${!isMobile ? 'cursor-pointer' : ''}`}
+      className={`relative flex flex-col items-center px-4 py-5 rounded-lg bg-black/10 backdrop-blur-sm border border-${borderColorClass} 
+        transition-all duration-300 hover:bg-black/20 hover:-translate-y-1 cursor-pointer neon-border glass-card`}
+      whileHover={{ scale: 1.05 }}
       onClick={() => !isMobile && window.open(tech.docUrl, '_blank')}
     >
       <div className="mb-3">{tech.icon}</div>
@@ -172,7 +170,7 @@ export default function TechStack() {
         >
           <div className="text-left mb-8 md:mb-12">
             <h2 
-              className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600 mb-2 md:mb-4 pb-1" 
+              className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#6A4780] mb-2 md:mb-4 pb-1" 
               data-component-name="TechStack"
             >
               Tecnologías
@@ -182,7 +180,7 @@ export default function TechStack() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             {/* Frontend */}
             <div className="rounded-lg p-6 bg-transparent backdrop-blur-sm">
-              <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">Frontend</h3>
+              <h3 className="text-xl md:text-2xl font-semibold text-[#6A4780] mb-4">Frontend</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-3">
                 {technologies
                   .filter(tech => tech.category === "Frontend")
@@ -195,7 +193,7 @@ export default function TechStack() {
             
             {/* Backend */}
             <div className="rounded-lg p-6 bg-transparent backdrop-blur-sm">
-              <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">Backend</h3>
+              <h3 className="text-xl md:text-2xl font-semibold text-[#6A4780] mb-4">Backend</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-3">
                 {technologies
                   .filter(tech => tech.category === "Backend")
@@ -208,7 +206,7 @@ export default function TechStack() {
             
             {/* DevOps */}
             <div className="rounded-lg p-6 bg-transparent backdrop-blur-sm">
-              <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">DevOps</h3>
+              <h3 className="text-xl md:text-2xl font-semibold text-[#6A4780] mb-4">DevOps</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-3">
                 {technologies
                   .filter(tech => tech.category === "DevOps")
@@ -221,7 +219,7 @@ export default function TechStack() {
             
             {/* Base de Datos */}
             <div className="rounded-lg p-6 bg-transparent backdrop-blur-sm">
-              <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">Base de Datos</h3>
+              <h3 className="text-xl md:text-2xl font-semibold text-[#6A4780] mb-4">Base de Datos</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-3">
                 {technologies
                   .filter(tech => tech.category === "Database")

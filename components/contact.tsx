@@ -54,7 +54,7 @@ export default function Contact() {
     <section id="contact" className="relative w-full py-12 md:py-20 px-6 md:px-12 lg:px-24 overflow-hidden">
       <div className="container relative mx-auto max-w-7xl">
         <motion.div className="text-left mb-12 md:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600 mb-2 md:mb-4 pb-1">Contáctame</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#6A4780] mb-2 md:mb-4 pb-1">Contáctame</h2>
           <p className="text-white/80 text-sm sm:text-base md:text-lg max-w-2xl">
             ¿Tienes un proyecto en mente o quieres discutir oportunidades potenciales? ¡Me encantaría escucharte!
           </p>
@@ -67,16 +67,16 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h3 className="text-xl sm:text-2xl font-bold mb-4 text-white">Información de Contacto</h3>
-            <p className="text-white/80 mb-6 text-sm sm:text-base">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4 text-[#6A4780]">Información de Contacto</h3>
+            <p className="text-white/80 mb-6 text-sm sm:text-base md:text-lg">
               No dudes en contactarme a través de cualquiera de estos metodos. Estoy abierto a discutir nuevos proyectos,
               ideas creativas u oportunidades para ser parte de tu visión ¡Me encantaría escucharte!.
             </p>
 
             <div className="space-y-6">
               <div className="flex items-start">
-                <div className="w-10 h-10 rounded-lg bg-purple-900/30 flex items-center justify-center mr-4 border border-purple-800/50">
-                  <Mail className="w-5 h-5 text-purple-400" />
+                <div className="w-10 h-10 rounded-lg bg-pink-900/30 flex items-center justify-center mr-4 border border-pink-800/50">
+                  <Mail className="w-5 h-5 text-pink-400" />
                 </div>
                 <div>
                   <p className="text-sm text-white/60 mb-1">Correo</p>
@@ -84,8 +84,8 @@ export default function Contact() {
                 </div>
               </div>
               <div className="flex items-start">
-                <div className="w-10 h-10 rounded-lg bg-purple-900/30 flex items-center justify-center mr-4 border border-purple-800/50">
-                  <MapPin className="w-5 h-5 text-purple-400" />
+                <div className="w-10 h-10 rounded-lg bg-pink-900/30 flex items-center justify-center mr-4 border border-pink-800/50">
+                  <MapPin className="w-5 h-5 text-pink-400" />
                 </div>
                 <div>
                   <p className="text-sm text-white/60 mb-1">Ubicación</p>
@@ -99,28 +99,28 @@ export default function Contact() {
               <div className="flex space-x-4">
                 <a
                   href="https://github.com/Kuribo50"
-                  className="group flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 transition-all duration-300"
+                  className="group flex items-center justify-center w-10 h-10 rounded-full bg-[#6e5494] hover:bg-[#6e5494]/80 transition-all duration-300"
                   aria-label="GitHub"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Github className="w-5 h-5 text-[#6e5494] group-hover:scale-125 transition-transform duration-300" />
+                  <Github className="w-5 h-5 text-white group-hover:scale-125 transition-transform duration-300" />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/martinberoiza/"
-                  className="group flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 transition-all duration-300"
+                  className="group flex items-center justify-center w-10 h-10 rounded-full bg-[#0077B5] hover:bg-[#0077B5]/80 transition-all duration-300"
                   aria-label="LinkedIn"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Linkedin className="w-5 h-5 text-[#0077B5] group-hover:scale-125 transition-transform duration-300" />
+                  <Linkedin className="w-5 h-5 text-white group-hover:scale-125 transition-transform duration-300" />
                 </a>
                 <a
                   href="mailto:martin.beroiza0@gmail.com"
-                  className="group flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 transition-all duration-300"
+                  className="group flex items-center justify-center w-10 h-10 rounded-full bg-[#EA4335] hover:bg-[#EA4335]/80 transition-all duration-300"
                   aria-label="Email"
                 >
-                  <Mail className="w-5 h-5 text-[#EA4335] group-hover:scale-125 transition-transform duration-300" />
+                  <Mail className="w-5 h-5 text-white group-hover:scale-125 transition-transform duration-300" />
                 </a>
               </div>
             </div>
@@ -134,7 +134,7 @@ export default function Contact() {
           >
             <form
               onSubmit={handleSubmit}
-              className="bg-transparent backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-[#2a2a3e] hover:border-purple-500 transition-all duration-300"
+              className="bg-transparent backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-[#2a2a3e] hover:border-purple-500 transition-all duration-300 neon-border glass-card"
               style={{
                 boxShadow: "0 0 10px rgba(168, 85, 247, 0.2)"
               }}
@@ -208,9 +208,9 @@ export default function Contact() {
 
                 <motion.button
                   type="submit"
-                  className="w-full py-3 px-6 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-all"
+                  className="w-full py-3 px-6 rounded-md bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-all"
                   whileHover={{ 
-                    boxShadow: "0 0 15px rgba(168, 85, 247, 0.5)"
+                    boxShadow: "0 0 15px rgba(236, 72, 153, 0.5)"
                   }}
                 >
                   Enviar Mensaje <ArrowRight size={16} />

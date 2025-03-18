@@ -36,7 +36,7 @@ export default function About() {
     <section id="about" className="relative w-full py-12 md:py-20 px-6 md:px-12 lg:px-24 overflow-hidden">
       <div className="container relative z-10 mx-auto max-w-7xl">
         <motion.div className="text-left mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600 mb-2 md:mb-4 pb-1">Sobre Mí</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#6A4780] mb-2 md:mb-4 pb-1">Sobre Mí</h2>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-start">
@@ -73,7 +73,7 @@ export default function About() {
                   key={badge.title}
                   className={`absolute ${badge.position === "top-left" ? "-top-6 -left-6" : "-bottom-4 right-12"
                     } p-3 sm:p-4 bg-gradient-to-${badge.position === "top-left" ? "br" : "tr"
-                    } ${badge.gradient} backdrop-blur-sm rounded-xl border border-[#2a2a3e] z-20`}
+                    } from-pink-900 to-purple-900/40 backdrop-blur-sm rounded-xl border border-[#2a2a3e] z-20`}
                 >
                   <div className="flex items-center gap-2 sm:gap-3">
                     {badge.icon}
@@ -99,7 +99,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600 animate-gradient inline-flex items-center"
+              className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-[#6A4780] inline-flex items-center"
             >
               ¡Hola! Soy Martín Beroiza
             </motion.h3>
@@ -135,7 +135,7 @@ export default function About() {
                     boxShadow: "0 0 15px rgba(168, 85, 247, 0.8), inset 0 0 8px rgba(168, 85, 247, 0.5)"
                   }}
                 >
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-purple-900/30 flex items-center justify-center mb-2 sm:mb-3 border border-purple-800/50">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-pink-900/30 flex items-center justify-center mb-2 sm:mb-3 border border-pink-800/50">
                     {value.icon}
                   </div>
                   <h4 className="text-sm sm:text-base font-semibold mb-1 text-white">{value.title}</h4>

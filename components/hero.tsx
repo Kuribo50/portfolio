@@ -7,11 +7,10 @@ import { FaLinkedin } from 'react-icons/fa6'
 import { FaGithub } from 'react-icons/fa6'
 import { FaEnvelope } from 'react-icons/fa6'
 import { TypeAnimation } from 'react-type-animation'
-import { Github, Linkedin, Mail } from "lucide-react"
 
 export default function Hero() {
   return (
-    <section id="Inicio" className="relative w-full min-h-[105vh] flex flex-col justify-center px-6 md:px-12 lg:px-24 py-16 overflow-hidden">
+    <section id="Inicio" className="relative w-full min-h-[90vh] flex flex-col justify-center px-6 md:px-12 lg:px-24 py-16 overflow-hidden">
       <div className="container relative mx-auto max-w-7xl">
         <motion.div
           className="flex flex-col items-start space-y-6 sm:space-y-8"
@@ -20,10 +19,10 @@ export default function Hero() {
           </div>
 
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight sm:leading-none mb-4 sm:mb-6"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight sm:leading-none mb-4 sm:mb-6 text-primary"
           >
-            <span className="block">Martin Beroiza</span>
-            <span className="block mt-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600 leading-normal">
+            <span className="block text-[#6A4780]">Martin Beroiza</span>
+            <span className="block mt-4 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 via-pink-500 to-rose-500 leading-normal">
               <TypeAnimation
                 sequence={[
                   '!@#$%^&*()_+',
@@ -39,19 +38,24 @@ export default function Hero() {
                 speed={50}
                 repeat={0}
                 cursor={false}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
               />
             </span>
           </motion.h1>
 
           <motion.p
-            className="max-w-xl text-base md:text-lg text-gray-300 mt-7"
-            initial={{ opacity: 1 }}
+            className="max-w-xl text-sm sm:text-base md:text-lg lg:text-xl mt-4 sm:mt-5 md:mt-7"
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <span className="font-medium text-blue-400">Diseño soluciones digitales que marcan la diferencia.<br></br> </span> 
-            Enfocado en crear experiencias únicas y personalizadas.
+            <span className="font-semibold hero-title-text block text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl leading-tight">
+              Diseño soluciones digitales
+              <span className="hidden sm:inline"> que marcan la diferencia.</span>
+            </span> 
+            <span className="block mt-2 sm:mt-3 md:mt-4">
+              Enfocado en crear experiencias únicas y personalizadas.
+            </span>
           </motion.p>
           <button
               onClick={() => {
@@ -89,57 +93,55 @@ export default function Hero() {
             transition={{ duration: 0.2 }}
             className="mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"
           >
+            {/* Iconos sociales */}
+            <div className="flex gap-4">
+              <Link
+                href="https://www.linkedin.com/in/martin-beroiza"
+                className="group flex items-center justify-center w-10 h-10 rounded-full bg-[#0077B5] hover:bg-[#0077B5]/90 transition-all duration-300"
+                aria-label="LinkedIn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaLinkedin className="w-5 h-5 text-white group-hover:scale-125 transition-transform duration-300" />
+              </Link>
+              <Link
+                href="mailto:martin.beroiza@example.com"
+                className="group flex items-center justify-center w-10 h-10 rounded-full bg-[#EA4335] hover:bg-[#EA4335]/90 transition-all duration-300"
+                aria-label="Email"
+              >
+                <FaEnvelope className="w-5 h-5 text-white group-hover:scale-125 transition-transform duration-300" />
+              </Link>
+              <Link
+                href="https://github.com/martinberoiza"
+                className="group flex items-center justify-center w-10 h-10 rounded-full bg-[#6e5494] hover:bg-[#6e5494]/90 transition-all duration-300"
+                aria-label="GitHub"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaGithub className="w-5 h-5 text-white group-hover:scale-125 transition-transform duration-300" />
+              </Link>
+            </div>
+            {/* Botones de acción */}
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/MartinBeroizaCV.pdf"
                 download
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative overflow-hidden px-5 py-2 text-sm rounded-full border border-amber-400/30 text-white font-medium hover:bg-amber-400 hover:shadow-lg hover:shadow-amber-500/40 transition-all duration-300"
+                className="group relative overflow-hidden px-5 py-2 text-sm rounded-full border border-pink-400 text-white font-medium hover:bg-pink-500 hover:border-pink-500 hover:shadow-lg hover:shadow-pink-500/40 transition-all duration-300"
               >
                 {/* Shine effect */}
                 <div className="absolute inset-0 overflow-hidden">
-                  <div className="absolute -left-full top-0 h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-amber-100/40 to-transparent transition-all duration-500 group-hover:left-full" />
+                  <div className="absolute -left-full top-0 h-full w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent transition-all duration-500 group-hover:left-full" />
                 </div>
                 <span className="relative">Currículum</span>
               </Link>
               <Link
                 href="#contact"
-                className="px-5 py-2 text-sm rounded-full border border-gray-700 text-white font-medium hover:bg-purple-600 hover:border-purple-600 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
+                className="px-5 py-2 text-sm rounded-full border border-purple-500 text-white font-medium hover:bg-purple-600 hover:border-purple-600 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300"
               >
                 Contáctame
               </Link>
-            </div>
-
-            {/* Social Icons */}
-            <div className="flex items-center space-x-4">
-              <a  
-                href="https://github.com/Kuribo50"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group social-icon-github social-icon-hover"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <Github className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/martinberoiza/"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group social-icon-linkedin social-icon-hover"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
-              </a>
-              <a
-                href="mailto:martin.beroiza@gmail.com"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group social-icon-email social-icon-hover"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Email"
-              >
-                <Mail className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
-              </a>
             </div>
           </motion.div>
         </motion.div>

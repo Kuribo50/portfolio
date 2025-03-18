@@ -1,29 +1,29 @@
 "use client"
 
-import { Moon, Sun } from 'lucide-react'
-import { motion } from 'framer-motion'
-import { useTheme } from './theme-provider'
+import { useTheme } from "./theme-provider"
+import { Sun, Moon } from "lucide-react"
 
-export default function ThemeToggle() {
+export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
+    // Asegurarse de que cambiamos al tema opuesto
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
+    console.log("Cambiando tema a:", newTheme) // Para depuración
+    setTheme(newTheme)
   }
 
   return (
-    <motion.button
+    <button 
       onClick={toggleTheme}
-      className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 group ${theme === 'dark' ? 'bg-gray-800 hover:bg-gray-700' : 'bg-pink-200 hover:bg-pink-300'}`}
-      aria-label="Toggle theme"
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
+      aria-label="Cambiar tema"
+      className="p-2 rounded-full hover:bg-gray-800 transition-colors"
     >
       {theme === 'dark' ? (
-        <Sun className="w-5 h-5 text-yellow-400 group-hover:text-yellow-300 transition-transform duration-300" />
+        <Sun className="h-5 w-5 text-yellow-400" />
       ) : (
-        <Moon className="w-5 h-5 text-purple-500 group-hover:text-purple-400 transition-transform duration-300" />
+        <Moon className="h-5 w-5 text-slate-900" />
       )}
-    </motion.button>
+    </button>
   )
 }

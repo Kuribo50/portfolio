@@ -6,9 +6,10 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu } from "lucide-react";
 import Link from "next/link";
-import ThemeToggle from "./theme-toggle";
+import { ThemeToggle } from "./theme-toggle";
+import { useTheme } from "./theme-provider";
 
-// Define los items de navegación según la página
+// Items de navegación según la página
 const getNavigationItems = (isProjectPage: boolean) => {
   if (isProjectPage) {
     return [
@@ -37,58 +38,17 @@ export default function Navbar() {
   const [isMobile, setIsMobile] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("Inicio");
-  const [isPastHero, setIsPastHero] = useState(false);
-  const [theme, setTheme] = useState('light'); // Set default theme without document
-
-  // Initialize theme on client side
-  useEffect(() => {
-    // Get theme from localStorage first, then fallback to document attribute, then light
-    const savedTheme = localStorage.getItem('theme') || 
-                      document.documentElement.getAttribute('data-theme') || 
-                      'light';
-    
-    // Update both localStorage and document attribute
-    localStorage.setItem('theme', savedTheme);
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    setTheme(savedTheme);
-  }, []);
-
-  // Remove the duplicate theme observer effect
-  // Keep only one observer for theme changes
-  useEffect(() => {
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach(mutation => {
-        if (mutation.attributeName === 'data-theme') {
-          const newTheme = document.documentElement.getAttribute('data-theme') || 'light';
-          setTheme(newTheme);
-          localStorage.setItem('theme', newTheme);
-        }
-      });
-    });
-    observer.observe(document.documentElement, { attributes: true });
-    return () => observer.disconnect();
-  }, []);
+  
+  // Usamos directamente el hook useTheme para obtener el tema actual
+  const { theme } = useTheme();
 
   const headerRef = useRef<HTMLElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   
-  // Obtiene los items de navegación según la página actual
+  // Items de navegación según la página
   const NAVIGATION_ITEMS = getNavigationItems(isProjectPage);
 
-  // Actualiza el estado "theme" cuando cambia el atributo data-theme en el documento
-  useEffect(() => {
-    const observer = new MutationObserver((mutations) => {
-      mutations.forEach(mutation => {
-        if (mutation.attributeName === 'data-theme') {
-          setTheme(document.documentElement.getAttribute('data-theme') || 'light');
-        }
-      });
-    });
-    observer.observe(document.documentElement, { attributes: true });
-    return () => observer.disconnect();
-  }, []);
-
-  // Detector de cambio de tamaño para dispositivos móviles
+  // Detecta tamaño de pantalla
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -96,17 +56,16 @@ export default function Navbar() {
         setIsMobileMenuOpen(false);
       }
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Detector de scroll para actualizar la sección activa y el fondo del navbar (aplicable en desktop)
+  // Detecta scroll (solo para desktop) para cambiar fondo según la posición
   useEffect(() => {
     const handleScroll = () => {
-      // Sólo para desktop se aplica la lógica de transparencia según el scroll
       if (!isMobile) {
+        // Revisa las secciones y decide si la navbar está "scrolled"
         const sections = NAVIGATION_ITEMS.map((item) => item.href.substring(1));
         let currentActive = activeSection;
         let found = false;
@@ -134,22 +93,14 @@ export default function Navbar() {
           setActiveSection(currentActive);
         }
       }
-      
-      // Determina si se ha pasado la sección "Inicio" (hero) para ajustar el padding
-      const heroSection = document.getElementById("Inicio");
-      if (heroSection) {
-        const heroBottom = heroSection.offsetTop + heroSection.offsetHeight;
-        setIsPastHero(window.scrollY > heroBottom - 200);
-      }
     };
     
     window.addEventListener("scroll", handleScroll);
-    // Ejecuta el handler al montar para establecer el estado inicial
-    handleScroll();
+    handleScroll(); // Al montar
     return () => window.removeEventListener("scroll", handleScroll);
   }, [activeSection, isProjectPage, NAVIGATION_ITEMS, isMobile]);
 
-  // Cierra el menú móvil si se hace clic fuera de él
+  // Cierra menú móvil si se hace click fuera
   const handleOutsideClick = useCallback(
     (e: MouseEvent) => {
       if (
@@ -163,12 +114,12 @@ export default function Navbar() {
     },
     [isMobileMenuOpen],
   );
-
   useEffect(() => {
     document.addEventListener("mousedown", handleOutsideClick);
     return () => document.removeEventListener("mousedown", handleOutsideClick);
   }, [handleOutsideClick]);
 
+  // Evita scroll en el body cuando el menú móvil está abierto
   useEffect(() => {
     if (isMobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -180,7 +131,7 @@ export default function Navbar() {
     };
   }, [isMobileMenuOpen]);
 
-  // Variantes de animación para el menú
+  // Variantes para la animación del menú
   const menuVariants = {
     closed: {
       opacity: 0,
@@ -195,28 +146,17 @@ export default function Navbar() {
       transition: { duration: 0.3, when: "beforeChildren", staggerChildren: 0.05 },
     },
   };
-
   const itemVariants = {
     closed: { opacity: 0, y: -10 },
     open: { opacity: 1, y: 0 },
   };
 
+  // Click en enlaces
   const handleNavClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
-
-    // Save current theme before navigation
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-    localStorage.setItem('theme', currentTheme);
-
-    // Handle navigation for project pages
+    // Si está en página de proyecto y clic en "Inicio", regresa al home
     if (isProjectPage && href === "#Inicio") {
       window.location.href = "/";
-      return;
-    }
-
-    // Handle "Volver" link in project pages
-    if (isProjectPage && href === "/#projects") {
-      window.location.href = href;
       return;
     }
 
@@ -231,13 +171,12 @@ export default function Navbar() {
     }
   };
 
-  // Para desktop se usa la lógica de scroll, mientras que en mobile siempre se muestra fondo
+  // Clases de fondo en desktop vs mobile
   const backgroundClasses = isMobile
     ? (theme === 'light' ? "bg-white/80 text-black" : "bg-black/90 text-white")
     : (isScrolled
       ? "backdrop-blur-lg rounded-xl shadow-xl " + (theme === 'light' ? "bg-white/80 text-black" : "bg-black/90 text-white")
-      : "bg-transparent"
-    );
+      : "bg-transparent " + (theme === 'light' ? "text-black" : "text-white"));
 
   // Fondo del menú móvil según el tema
   const mobileMenuBackground = theme === 'light'
@@ -247,12 +186,12 @@ export default function Navbar() {
   return (
     <header
       ref={headerRef}
-      className={`fixed top-0 left-0 right-0 z-50 px-4 ${isPastHero ? "py-3 md:py-4" : "py-4 md:py-6"}`}
+      className={`sticky top-0 z-50 px-4 py-4 md:py-6`}
     >
       <div className={`${backgroundClasses} px-4 md:px-6`}>
         <div className="max-w-6xl mx-auto">
-          <div className={`flex items-center justify-between ${isPastHero ? "h-12 md:h-14" : "h-14 md:h-16"} transition-all duration-300`}>
-            {/* Logo/Brand */}
+          <div className="flex items-center justify-between h-14 md:h-16 transition-all duration-300">
+            {/* Logo */}
             <motion.a
               href={isProjectPage ? "/" : "#Inicio"}
               onClick={(e) => handleNavClick(e, "#Inicio")}
@@ -278,7 +217,7 @@ export default function Navbar() {
               />
             </motion.a>
 
-            {/* Navegación en escritorio */}
+            {/* Navegación desktop */}
             <nav className="hidden md:flex justify-center items-center">
               <ul className="flex space-x-8 px-4 py-1">
                 {isProjectPage && (
@@ -312,13 +251,13 @@ export default function Navbar() {
                 ))}
               </ul>
               
-              {/* Botón para cambiar de tema */}
+              {/* Botón de tema */}
               <div className="ml-6">
                 <ThemeToggle />
               </div>
             </nav>
 
-            {/* Botón del menú móvil */}
+            {/* Botón menú móvil */}
             {isMobile && (
               <motion.button
                 id="menu-toggle"
@@ -330,7 +269,7 @@ export default function Navbar() {
                 {isMobileMenuOpen ? (
                   <motion.div className="w-6 h-6 flex flex-col justify-center items-center" initial={false}>
                     <motion.span
-                      className="block w-5 h-0.5 bg-white mb-1.5"
+                      className={`block w-5 h-0.5 ${theme === 'light' ? 'bg-black' : 'bg-white'} mb-1.5`}
                       animate={{
                         rotate: isMobileMenuOpen ? 45 : 0,
                         y: isMobileMenuOpen ? 8 : 0,
@@ -338,12 +277,12 @@ export default function Navbar() {
                       transition={{ duration: 0.3 }}
                     />
                     <motion.span
-                      className="block w-5 h-0.5 bg-white mb-1.5"
+                      className={`block w-5 h-0.5 ${theme === 'light' ? 'bg-black' : 'bg-white'} mb-1.5`}
                       animate={{ opacity: isMobileMenuOpen ? 0 : 1 }}
                       transition={{ duration: 0.3 }}
                     />
                     <motion.span
-                      className="block w-5 h-0.5 bg-white"
+                      className={`block w-5 h-0.5 ${theme === 'light' ? 'bg-black' : 'bg-white'}`}
                       animate={{
                         rotate: isMobileMenuOpen ? -45 : 0,
                         y: isMobileMenuOpen ? -8 : 0,
@@ -352,7 +291,7 @@ export default function Navbar() {
                     />
                   </motion.div>
                 ) : (
-                  <Menu className="w-6 h-6" />
+                  <Menu className={`w-6 h-6 ${theme === 'light' ? 'text-black' : 'text-white'}`} />
                 )}
               </motion.button>
             )}

@@ -176,8 +176,6 @@ export default function Projects() {
             </div>
             <Link
               href="#contact"
-              target="_blank"
-              rel="noopener noreferrer"
               className="px-6 py-3 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium flex items-center gap-2 hover:opacity-90 transition-all whitespace-nowrap"
             >
               Contáctame <ArrowUpRight size={16} />

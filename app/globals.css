@@ -2,87 +2,39 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-:root[data-theme="light"] {
-  --background: 255 255 255;
-  --foreground: 0 0 0;
-  /* Add other light theme variables */
+:root {
+  --background: #fff;
+  --foreground: #000;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 267 50% 40%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222.2 47.4% 11.2%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222.2 47.4% 11.2%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 263 70% 50%;
+  --radius: 0.5rem;
+  --button-primary: 330 90% 65%;
+  --button-hover: 330 80% 55%;
+  --github-color: #6e5494;
+  --linkedin-color: #0077B5;
+  --mail-color: #EA4335;
 }
-
 :root[data-theme="dark"] {
-  --background: 0 0 0;
-  --foreground: 255 255 255;
-  /* Add other dark theme variables */
-}
-
-:root[data-theme="light"] {
-  --background: #ffffff;
-  --foreground: #000000;
-  --card: #FAFAFA;
-  --card-foreground: #000000;
-  --popover: #000000;
-  --popover-foreground: #000000;
-  --primary: #FF4DA6;
-  --primary-foreground: #000000;
-  --secondary: #680068;
-  --secondary-foreground: #000000;
-  --muted: #FCF2F7;
-  --muted-foreground: #000000;
-  --accent: #FFF0F8;
-  --accent-foreground: #000000;
-  --destructive: #E63535;
-  --destructive-foreground: #000000;
-  --border: #E8D0DC;
-  --input: #E8D0DC;
-  --ring: #FF4DA6;
-}
-
-/* Add these new styles to override text colors */
-[data-theme="light"] {
-  .text-white {
-    color: #000000;
-  }
-  
-  .text-white\/80 {
-    color: rgba(0, 0, 0, 0.8);
-  }
-
-  .text-white\/60 {
-    color: rgba(0, 0, 0, 0.6);
-  }
-
-  .text-gray-300 {
-    color: #4B5563;
-  }
-
-  h1 {
-    color: #2563EB;
-  }
-
-  h2 {
-    color: #2563EB;
-  }
-
-  h3, h4, h5, h6 {
-    color: #000000;
-  }
-
-  p {
-    color: #000000;
-  }
-}
-
-[data-theme="dark"] {
-  h1, h2 {
-    color: #3B82F6;
-  }
-}
-
-:root[data-theme="dark"] {
-  --background: #000000;
-  --foreground: #FFFFFF;
+  --background: #000;
+  --foreground: #fff;
   --card: #0C0C0F;
   --card-foreground: #FFFFFF;
-  --popover: #000000;
+  --popover: #0C0C0F;
   --popover-foreground: #FFFFFF;
   --primary: #A855F7;
   --primary-foreground: #FFFFFF;
@@ -98,11 +50,98 @@
   --input: #27272A;
   --ring: #A855F7;
 }
+/* Add these new styles to override text colors */
+[data-theme="light"] {
+  .text-white {
+    color: #000000;
+  }
+  
+  .text-white\/80 {
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .text-white\/60 {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .text-gray-300 {
+    color: #333333;
+  }
+
+  .text-gray-400 {
+    color: #222222;
+  }
+
+  h1 {
+    color: #1a56db;
+  }
+
+  h2 {
+    color: #1a56db;
+  }
+
+  h3, h4, h5, h6 {
+    color: #000000;
+  }
+
+  p {
+    color: #111111;
+  }
+
+  button svg, a svg {
+    color: #333333;
+  }
+
+  .github-icon, .linkedin-icon, .mail-icon {
+    color: #333333 !important;
+  }
+
+  button:hover, a:hover {
+    opacity: 0.85;
+  }
+
+  .bg-gray-800 {
+    background-color: #e0e0e0;
+  }
+
+  .ThemeToggle {
+    background-color: #e0e0e0;
+  }
+
+  .social-icon-github, .social-icon-linkedin, .social-icon-email {
+    filter: saturate(1.2) brightness(0.85);
+  }
+
+  /* Mejoras de contraste para textos en modo claro */
+  .text-white\/80, .text-white\/70, .text-white\/60 {
+    color: rgba(51, 51, 51, 0.9) !important; /* Gris oscuro con alta opacidad para mejor legibilidad */
+  }
+  
+  /* Clase específica para textos hero y destacados */
+  .hero-text, .featured-text {
+    color: #333333 !important;
+  }
+  
+  /* Asegurar que párrafos tengan buen contraste */
+  p {
+    color: #333333;
+  }
+  
+  /* Otros textos que necesitan contraste */
+  .text-white {
+    color: #212121 !important;
+  }
+}
+
+[data-theme="dark"] {
+  h1, h2 {
+    color: #3B82F6;
+  }
+}
 
 body {
   background-color: var(--background);
   color: var(--foreground);
-  
 }
 
 /* Custom text selection color */
@@ -115,7 +154,6 @@ body {
   background-color: rgba(255, 105, 180, 0.3);
   color: #000;
 }
-
 
 /* Social Icons Background Colors */
 .social-icon-github {
@@ -136,4 +174,202 @@ body {
 .social-icon-hover:hover {
   opacity: 0.9;
   transform: translateY(-2px);
+}
+
+/* Mejoras generales para iconos */
+.lucide-icon {
+  stroke-width: 1.75;
+}
+
+/* Transiciones suaves para cambios de modo */
+body, a, button, svg {
+  transition: color 0.3s ease, background-color 0.3s ease, opacity 0.3s ease;
+}
+
+/* Mejora de legibilidad y colores en ambos temas */
+[data-theme="light"], [data-theme="dark"] {
+  h1, h2, h3 {
+    color: #6A4780;
+  }
+  
+  .section-title {
+    color: #6A4780;
+  }
+  
+  .subtitle {
+    color: #8A67A0;
+  }
+  
+  /* Botones con nuevo color */
+  .btn-primary {
+    background-color: hsl(var(--button-primary));
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: hsl(var(--button-hover));
+  }
+  
+  /* Iconos sociales con fondos de colores */
+  .social-icon-github {
+    background-color: var(--github-color) !important;
+    color: white !important;
+  }
+  
+  .social-icon-linkedin {
+    background-color: var(--linkedin-color) !important;
+    color: white !important;
+  }
+  
+  .social-icon-email {
+    background-color: var(--mail-color) !important;
+    color: white !important;
+  }
+}
+
+/* Estilos específicos para tema claro */
+[data-theme="light"] {
+  .text-white {
+    color: #000000;
+  }
+  
+  .text-section-title {
+    color: #6A4780 !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #6A4780;
+  }
+  
+  /* Otros ajustes del tema claro... */
+}
+
+/* Estilos específicos para tema oscuro */
+[data-theme="dark"] {
+  h1, h2, h3, h4, h5, h6 {
+    color: #8A67A0;
+  }
+  
+  .text-section-title {
+    color: #8A67A0 !important;
+  }
+  
+  /* Otros ajustes del tema oscuro... */
+}
+
+/* Botones con estilo mejorado */
+.button-primary {
+  background-color: hsl(330, 90%, 65%);
+  border-color: hsl(330, 90%, 65%);
+  color: white;
+  transition: all 0.3s ease;
+}
+
+.button-primary:hover {
+  background-color: hsl(330, 80%, 55%);
+  border-color: hsl(330, 80%, 55%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(225, 90, 175, 0.3);
+}
+
+.button-secondary {
+  background-color: transparent;
+  border-color: hsl(330, 90%, 65%);
+  color: hsl(330, 90%, 65%);
+  transition: all 0.3s ease;
+}
+
+.button-secondary:hover {
+  background-color: hsl(330, 90%, 95%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(225, 90, 175, 0.1);
+}
+
+/* Ajustes de bordes y efectos neón para ambos temas */
+[data-theme="light"] {
+  /* Bordes para cajas y tarjetas */
+  .border-dark {
+    border-color: rgba(106, 71, 128, 0.3) !important;
+  }
+  
+  /* Fondos de tarjetas */
+  .bg-black\/20, .bg-black\/40 {
+    background-color: rgba(255, 255, 255, 0.267) !important;
+  }
+  
+  /* Sombras de neón */
+  .shadow-purple-500\/20 {
+    box-shadow: 0 0 15px rgba(106, 71, 128, 0.4) !important;
+  }
+  
+  /* Efectos neón en hover para cajas */
+  .hover\:border-purple-500:hover {
+    border-color: #6A4780 !important;
+    box-shadow: 0 0 10px rgba(106, 71, 128, 0.6) !important;
+  }
+  
+  /* Fondos para badges y tarjetas de tech stack */
+  .from-pink-900, .bg-pink-900\/30, .bg-purple-900\/30 {
+    background-color: rgba(236, 72, 153, 0.15) !important;
+    background-image: none !important;
+  }
+  
+  /* Bordes de elementos con glow */
+  .border-pink-800, .border-purple-800 {
+    border-color: rgba(236, 72, 153, 0.4) !important;
+  }
+  
+  /* Ajustes para timeline */
+  .timeline-item {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+  }
+  
+  /* Ajustes para cards de proyectos */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(8px);
+  }
+}
+
+/* Estilos globales para efectos neón independientes del tema */
+.neon-border {
+  transition: all 0.3s ease;
+}
+
+.neon-border:hover {
+  transform: translateY(-2px);
+}
+
+[data-theme="dark"] .neon-border:hover {
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+}
+
+[data-theme="light"] .neon-border:hover {
+  box-shadow: 0 0 15px rgba(106, 71, 128, 0.5);
+}
+
+/* Fondos con efecto glassmorphism */
+.glass-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+[data-theme="light"] .glass-card {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(106, 71, 128, 0.2);
+}
+
+[data-theme="dark"] .glass-card {
+  background-color: rgba(18, 18, 18, 0.7);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+/* Ajuste para el texto del título del héroe */
+.hero-title-text {
+  color: #6A4780;
+}
+
+[data-theme="dark"] .hero-title-text {
+  color: white !important;
 }
