@@ -37,8 +37,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider>
-          <GradientBackground />
-          {children}
+            <GradientBackground />
+            {children}
         </ThemeProvider>
       </body>
     </html>

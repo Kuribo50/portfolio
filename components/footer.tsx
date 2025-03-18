@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { Github, Instagram, Linkedin, Mail, Twitter } from "lucide-react"
 import { usePathname } from 'next/navigation'
+import ThemeToggle from "./theme-toggle"
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -17,7 +18,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-black border-t border-gray-800 py-12">
+    <footer className=" border-t border-gray-800 py-12">
       <div className="container max-w-6xl mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-8 md:mb-0">
@@ -30,33 +31,37 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col items-center md:items-end">
-            <div className="flex space-x-4 mb-4">
+            <div className="flex items-center space-x-4 mb-4">
+              {/* Add ThemeToggle before social links */}
+              <ThemeToggle />
+              
+              {/* Existing social links */}
               <a  
                 href="https://github.com/Kuribo50"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group"
+                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group social-icon-github social-icon-hover"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
               >
-                <Github className="w-5 h-5 text-[#6e5494] group-hover:scale-125 transition-transform duration-300" />
+                <Github className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
               </a>
               <a
                 href="https://www.linkedin.com/in/martinberoiza/"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group"
+                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group social-icon-linkedin social-icon-hover"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
-                <Linkedin className="w-5 h-5 text-[#0077B5] group-hover:scale-125 transition-transform duration-300" />
+                <Linkedin className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
               </a>
               <a
                 href="mailto:martin.beroiza@gmail.com"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group"
+                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group social-icon-email social-icon-hover"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Email"
               >
-                <Mail className="w-5 h-5 text-[#EA4335] group-hover:scale-125 transition-transform duration-300" />
+                <Mail className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
               </a>
             </div>
           </div>

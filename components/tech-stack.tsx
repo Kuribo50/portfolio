@@ -148,7 +148,7 @@ const TechCard = ({ tech, borderColorClass }: { tech: any, borderColorClass: str
         scale: 1.05, 
         boxShadow: "0 0 15px rgba(255, 255, 255, 0.5)"
       }}
-      className={`p-4 flex items-center justify-center flex-col bg-transparent backdrop-blur-sm rounded-xl border border-[#2a2a3e] transition-all duration-300 h-28 hover:border-${borderColorClass} ${!isMobile ? 'cursor-pointer' : ''}`}
+      className={`p-4 flex items-center justify-center flex-col bg-transparent backdrop-blur-sm rounded-xl border border-[#2a2a3e] transition-all duration-300 h-28 hover:border-${borderColorClass} tech-icon-container ${!isMobile ? 'cursor-pointer' : ''}`}
       onClick={() => !isMobile && window.open(tech.docUrl, '_blank')}
     >
       <div className="mb-3">{tech.icon}</div>

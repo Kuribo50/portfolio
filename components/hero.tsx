@@ -7,6 +7,7 @@ import { FaLinkedin } from 'react-icons/fa6'
 import { FaGithub } from 'react-icons/fa6'
 import { FaEnvelope } from 'react-icons/fa6'
 import { TypeAnimation } from 'react-type-animation'
+import { Github, Linkedin, Mail } from "lucide-react"
 
 export default function Hero() {
   return (
@@ -49,7 +50,7 @@ export default function Hero() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
           >
-            <span className="font-medium text-purple-300">Diseño soluciones digitales que marcan la diferencia.<br></br> </span> 
+            <span className="font-medium text-blue-400">Diseño soluciones digitales que marcan la diferencia.<br></br> </span> 
             Enfocado en crear experiencias únicas y personalizadas.
           </motion.p>
           <button
@@ -88,35 +89,6 @@ export default function Hero() {
             transition={{ duration: 0.2 }}
             className="mt-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"
           >
-            {/* Iconos sociales */}
-            <div className="flex gap-4">
-              <Link
-                href="https://www.linkedin.com/in/martinberoiza"
-                className="group flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 transition-all duration-300"
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaLinkedin className="w-5 h-5 text-[#0077B5] group-hover:scale-125 transition-transform duration-300" />
-              </Link>
-              <Link
-                href="martin.beroiza0@gmail.com"
-                className="group flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 transition-all duration-300"
-                aria-label="Email"
-              >
-                <FaEnvelope className="w-5 h-5 text-[#EA4335] group-hover:scale-125 transition-transform duration-300" />
-              </Link>
-              <Link
-                href="https://github.com/Kuribo50"
-                className="group flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 transition-all duration-300"
-                aria-label="GitHub"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FaGithub className="w-5 h-5 text-[#6e5494] group-hover:scale-125 transition-transform duration-300" />
-              </Link>
-            </div>
-            {/* Botones de acción */}
             <div className="flex flex-wrap gap-3">
               <Link
                 href="/MartinBeroizaCV.pdf"
@@ -137,6 +109,37 @@ export default function Hero() {
               >
                 Contáctame
               </Link>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex items-center space-x-4">
+              <a  
+                href="https://github.com/Kuribo50"
+                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group social-icon-github social-icon-hover"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <Github className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/martinberoiza/"
+                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group social-icon-linkedin social-icon-hover"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
+              </a>
+              <a
+                href="mailto:martin.beroiza@gmail.com"
+                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-purple-900/50 transition-all duration-300 group social-icon-email social-icon-hover"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Email"
+              >
+                <Mail className="w-5 h-5 group-hover:scale-125 transition-transform duration-300" />
+              </a>
             </div>
           </motion.div>
         </motion.div>

@@ -6,19 +6,22 @@ import Timeline from "@/components/timeline"
 import About from "@/components/about"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
+import { ThemeProvider } from "@/components/theme-provider"
 
 export default function Home() {
   return (
-    <main className="">
-      <Navbar />
-      <Hero />
-      <TechStack />
-      <Projects />
-      <Timeline />
-      <About />
-      <Contact />
-      <Footer />
-    </main>
+    <ThemeProvider>
+      <main>
+        <Navbar />
+        <Hero />
+        <TechStack />
+        <Projects />
+        <Timeline />
+        <About />
+        <Contact />
+        <Footer />
+      </main>
+    </ThemeProvider>
   )
 }
 

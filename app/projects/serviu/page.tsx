@@ -23,13 +23,14 @@ import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
-// Using relative imports instead of alias
-import ProjectPresentation from "../../../components/projects/presentacion";
-import ProjectContext from "../../../components/projects/contexto";
-import ProcessSection from "../../../components/projects/proceso";
-import FeaturesSection from "../../../components/projects/funcionalidades";
+// Update these imports to use absolute paths with @/ alias
+import ProjectPresentation from "@/components/projects/presentacion";
+import ProjectContext from "@/components/projects/contexto";
+import ProcessSection from "@/components/projects/proceso";
+import FeaturesSection from "@/components/projects/funcionalidades";
 
 export default function ServiuProject() {
+  try {
     const presentationData = {
         title: "Sistema de bodega SERVIU",
         description: "Sistema de gestión de bodega para el área de TI de SERVIU Biobío, diseñado para un control preciso y automatizado que permite el ingreso y salida de stock, la administración de préstamos de equipos, el registro de movimientos, la generación de informes, la administración de usuarios y cuenta con un sistema de autenticación.",
@@ -177,7 +178,7 @@ export default function ServiuProject() {
     };
 
     return (
-        <main className="min-h-screen bg-black">
+        <main className="">
             <Navbar />
             <ProjectPresentation presentationData={presentationData} />
             <ProjectContext contextData={contextData} />
@@ -193,4 +194,12 @@ export default function ServiuProject() {
             <Footer />
         </main>
     );
+  } catch (error) {
+    console.error('Error in ServiuProject:', error);
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p>Something went wrong. Please try again later.</p>
+      </div>
+    );
+  }
 }
