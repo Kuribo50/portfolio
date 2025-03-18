@@ -9,10 +9,10 @@ const projects = [
   {
     title: "Sistema de bodega SERVIU",
     description: "Sistema de gestión de inventario para bodegas públicas con seguimiento en tiempo real, reportes automatizados y control de acceso biométrico.",
-    image: "/imagesProyectos/ServiuFoto.webp",
+    image: "/imagesProyectos/SBSERVIU/ServiuFoto.webp",
     tags: ["Next.js", "JavaScript", "Python", "Django", "Tailwind", "PostgreSQL", "Docker"],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "/projects/serviu",
+    githubUrl: "https://github.com/Kuribo50/Gestion-de-inventario",
   },
 ]
 
@@ -111,6 +111,8 @@ export default function Projects() {
                     <div className="absolute bottom-4 right-4 flex gap-2">
                       <a
                         href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="bg-black/80 hover:bg-black rounded-full w-10 h-10 
                           flex items-center justify-center transform translate-y-2 opacity-0 
                           group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
@@ -174,6 +176,8 @@ export default function Projects() {
             </div>
             <Link
               href="#contact"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-3 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium flex items-center gap-2 hover:opacity-90 transition-all whitespace-nowrap"
             >
               Contáctame <ArrowUpRight size={16} />

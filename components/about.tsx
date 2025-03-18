@@ -69,13 +69,11 @@ export default function About() {
               </div>
               <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-purple-600/50 rounded-xl z-0" />
               {badges.map((badge, index) => (
-                <div 
+                <div
                   key={badge.title}
-                  className={`absolute ${
-                    badge.position === "top-left" ? "-top-6 -left-6" : "-bottom-4 right-12"
-                  } p-3 sm:p-4 bg-gradient-to-${
-                    badge.position === "top-left" ? "br" : "tr"
-                  } ${badge.gradient} backdrop-blur-sm rounded-xl border border-[#2a2a3e] z-20`}
+                  className={`absolute ${badge.position === "top-left" ? "-top-6 -left-6" : "-bottom-4 right-12"
+                    } p-3 sm:p-4 bg-gradient-to-${badge.position === "top-left" ? "br" : "tr"
+                    } ${badge.gradient} backdrop-blur-sm rounded-xl border border-[#2a2a3e] z-20`}
                 >
                   <div className="flex items-center gap-2 sm:gap-3">
                     {badge.icon}
@@ -96,7 +94,7 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="w-full max-w-lg mx-auto lg:mx-0"
           >
-            <motion.h3 
+            <motion.h3
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -107,15 +105,15 @@ export default function About() {
             </motion.h3>
             <span className="text-2xl ml-2">👋</span>
             <p className="text-white/80 mb-3 sm:mb-4 text-sm sm:text-base">
-              Soy un desarrollador de software de 22 años con formación como Analista Programador.
-              Desde siempre me ha fascinado la tecnología, lo que me llevó a iniciar mi carrera en el desarrollo 
-              de software hace unos años, con el objetivo de dejar una huella en el mundo a través de proyectos 
+              Tengo 22 años con formación como Analista Programador.
+              Desde siempre me ha fascinado la tecnología, lo que me llevó a iniciar mi carrera en el desarrollo
+              de software hace unos años, con el objetivo de dejar una huella en el mundo a través de proyectos
               innovadores y desafiantes.
             </p>
             <p className="text-white/80 mb-6 sm:mb-8 text-sm sm:text-base">
-              Aunque ya he completado mi formación académica, sigo comprometido con el aprendizaje continuo y la 
-              exploración de nuevas tecnologías para mantenerme a la vanguardia del desarrollo web. Cuando no estoy 
-              programando, me puedes encontrar leyendo sobre tendencias tecnológicas o experimentando con nuevos 
+              Aunque ya he completado mi formación académica, sigo comprometido con el aprendizaje continuo y la
+              exploración de nuevas tecnologías para mantenerme a la vanguardia del desarrollo web. Cuando no estoy
+              programando, me puedes encontrar leyendo sobre tendencias tecnológicas o experimentando con nuevos
               frameworks. Creo firmemente en crear tecnología que tenga un impacto positivo y mejore la vida de las personas.
             </p>
 
@@ -132,7 +130,7 @@ export default function About() {
                   style={{
                     boxShadow: "0 0 10px rgba(168, 85, 247, 0.6), inset 0 0 5px rgba(168, 85, 247, 0.3)"
                   }}
-                  whileHover={{ 
+                  whileHover={{
                     y: -5,
                     boxShadow: "0 0 15px rgba(168, 85, 247, 0.8), inset 0 0 8px rgba(168, 85, 247, 0.5)"
                   }}

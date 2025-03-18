@@ -38,7 +38,7 @@ export default function Hero() {
                 speed={50}
                 repeat={0}
                 cursor={false}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl block"
               />
             </span>
           </motion.h1>
@@ -91,7 +91,7 @@ export default function Hero() {
             {/* Iconos sociales */}
             <div className="flex gap-4">
               <Link
-                href="https://www.linkedin.com/in/martin-beroiza"
+                href="https://www.linkedin.com/in/martinberoiza"
                 className="group flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 transition-all duration-300"
                 aria-label="LinkedIn"
                 target="_blank"
@@ -100,14 +100,14 @@ export default function Hero() {
                 <FaLinkedin className="w-5 h-5 text-[#0077B5] group-hover:scale-125 transition-transform duration-300" />
               </Link>
               <Link
-                href="mailto:martin.beroiza@example.com"
+                href="martin.beroiza0@gmail.com"
                 className="group flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 transition-all duration-300"
                 aria-label="Email"
               >
                 <FaEnvelope className="w-5 h-5 text-[#EA4335] group-hover:scale-125 transition-transform duration-300" />
               </Link>
               <Link
-                href="https://github.com/martinberoiza"
+                href="https://github.com/Kuribo50"
                 className="group flex items-center justify-center w-10 h-10 rounded-full border border-gray-700 transition-all duration-300"
                 aria-label="GitHub"
                 target="_blank"

@@ -1,21 +1,39 @@
 "use client"
 
+import { usePathname } from 'next/navigation'
 import type React from "react"
 
 import { useState, useEffect, useRef, useCallback } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Menu } from "lucide-react"
+import Link from "next/link"
 
-const NAVIGATION_ITEMS = [
-  { label: "Inicio", href: "#Inicio" },
-  { label: "Tecnologías", href: "#tech-stack" },
-  { label: "Proyectos", href: "#projects" },
-  { label: "Trayectoria", href: "#timeline" },
-  { label: "Sobre mí", href: "#about" },
-  { label: "Contacto", href: "#contact" },
-]
+// Define navigation items based on page type
+// In the getNavigationItems function, update the project page items
+const getNavigationItems = (isProjectPage: boolean) => {
+  if (isProjectPage) {
+    return [
+      { label: "Presentación", href: "#presentation" },
+      { label: "Contexto", href: "#context" },
+      { label: "Proceso", href: "#process" },
+      { label: "Funcionalidades", href: "#features" },
+    ]
+  }
+  
+  return [
+    { label: "Inicio", href: "#Inicio" },
+    { label: "Tecnologías", href: "#tech-stack" },
+    { label: "Proyectos", href: "#projects" },
+    { label: "Trayectoria", href: "#timeline" },
+    { label: "Sobre mí", href: "#about" },
+    { label: "Contacto", href: "#contact" },
+  ]
+}
 
 export default function Navbar() {
+  const pathname = usePathname()
+  const isProjectPage = pathname.includes('/projects/')
+  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
@@ -24,6 +42,9 @@ export default function Navbar() {
 
   const headerRef = useRef<HTMLElement>(null)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
+  
+  // Get navigation items based on current page
+  const NAVIGATION_ITEMS = getNavigationItems(isProjectPage)
 
   // Detector de tamaño de pantalla
   useEffect(() => {
@@ -56,12 +77,13 @@ export default function Navbar() {
       const sections = NAVIGATION_ITEMS.map((item) => item.href.substring(1))
       let currentActive = activeSection
       let found = false
+      
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i]
         const element = document.getElementById(section)
         if (element) {
           const rect = element.getBoundingClientRect()
-          if (rect.top <= 300 && rect.bottom >= 100) {
+          if (rect.top <= 200 && rect.bottom >= 100) {
             currentActive = section
             found = true
             break
@@ -69,7 +91,7 @@ export default function Navbar() {
         }
       }
       
-      if (!found && window.scrollY < 300) {
+      if (!found && window.scrollY < 300 && !isProjectPage) {
         currentActive = "Inicio"
       }
       
@@ -82,7 +104,7 @@ export default function Navbar() {
     handleScroll()
     
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [activeSection])
+  }, [activeSection, isProjectPage, NAVIGATION_ITEMS]) // Added NAVIGATION_ITEMS to dependencies
 
   const handleOutsideClick = useCallback(
     (e: MouseEvent) => {
@@ -138,6 +160,12 @@ export default function Navbar() {
   const handleNavClick = (e: React.MouseEvent, href: string) => {
     e.preventDefault()
 
+    // Handle home link differently when on project page
+    if (isProjectPage && href === "#Inicio") {
+      window.location.href = "/"
+      return
+    }
+
     const targetElement = document.querySelector(href)
     if (targetElement) {
       window.scrollTo({
@@ -165,9 +193,9 @@ export default function Navbar() {
           <div
             className={`flex items-center justify-between ${isPastHero ? "h-12 md:h-14" : "h-14 md:h-16"} transition-all duration-300`}
           >
-            {/* Logo/Brand */}
+            {/* Logo/Brand - Make it a Link on project pages */}
             <motion.a
-              href="#Inicio"
+              href={isProjectPage ? "/" : "#Inicio"}
               onClick={(e) => handleNavClick(e, "#Inicio")}
               className="text-2xl font-bold tracking-tight transition-colors relative group"
               whileHover={{ scale: 1.05 }}
@@ -191,6 +219,16 @@ export default function Navbar() {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex justify-center items-center">
               <ul className="flex space-x-8 px-4 py-1">
+                {isProjectPage && (
+                  <motion.li whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+                    <Link
+                      href="/#projects"
+                      className="relative inline-block py-2 text-sm font-medium tracking-widest"
+                    >
+                      Volver
+                    </Link>
+                  </motion.li>
+                )}
                 {NAVIGATION_ITEMS.map((item) => (
                   <motion.li key={item.label} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
                     <a
@@ -269,6 +307,22 @@ export default function Navbar() {
           >
             <motion.nav className="flex flex-col items-center justify-center py-6">
               <ul className="flex flex-col space-y-5 text-center w-full">
+                {isProjectPage && (
+                  <motion.li
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-4"
+                  >
+                    <Link
+                      href="/#projects"
+                      className="text-xl font-medium tracking-wide relative inline-block"
+                    >
+                      Volver
+                    </Link>
+                  </motion.li>
+                )}
+                
                 {NAVIGATION_ITEMS.map((item) => (
                   <motion.li
                     key={item.label}
