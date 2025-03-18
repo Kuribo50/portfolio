@@ -88,7 +88,7 @@ export default function ServiuProject() {
         {
             title: "Pruebas y corrección de errores",
             description: "Se realizaron pruebas unitarias e integradas para validar el funcionamiento del sistema, corrigiendo errores y optimizando el rendimiento previo al despliegue.",
-            image: "/imagesProyectos/SBSERVIU/FOTO6.webp"
+            image: "/imagesProyectos/SBSERVIU/Foto6.webp"
         },
         {
             title: "Preparación para el despliegue",

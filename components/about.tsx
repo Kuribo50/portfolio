@@ -106,7 +106,7 @@ export default function About() {
             <span className="text-2xl ml-2">👋</span>
             <p className="text-white/80 mb-3 sm:mb-4 text-sm sm:text-base">
               Tengo 22 años con formación como Analista Programador.
-              Desde siempre me ha fascinado la tecnología, lo que me llevó a iniciar mi carrera en el desarrollo
+              Desde siempre me ha fascinado la tecnología, lo que me llevó aeqw iniciar mi carrera en el desarrollo
               de software hace unos años, con el objetivo de dejar una huella en el mundo a través de proyectos
               innovadores y desafiantes.
             </p>
