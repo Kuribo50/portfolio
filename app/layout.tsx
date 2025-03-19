@@ -6,7 +6,7 @@ import { ThemeProvider } from "../components/theme-provider"
 import GradientBackground from "../components/gradient-background"
 import Favicon from '../components/favicon'
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from "@vercel/analytics/react";
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     siteName: 'Martin Beroiza - Portafolio',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/favicon/favicon.svg',
         width: 1200,
         height: 630,
         alt: 'Martin Beroiza - Desarrollador Full Stack',
@@ -66,17 +66,17 @@ export const metadata: Metadata = {
   category: 'Tecnología',
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
-      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
+      { url: '/favicon/favicon.ico' },
+      { url: '/favicon/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon/favicon-32x32.png', sizes: '32x32', type: 'image/png' }
     ],
     apple: [
-      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
+      { url: '/favicon/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }
     ],
     other: [
       {
         rel: 'mask-icon',
-        url: '/safari-pinned-tab.svg',
+        url: '/favicon/safari-pinned-tab.svg',
         color: '#5bbad5'
       }
     ]
@@ -92,6 +92,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es" suppressHydrationWarning>
+      <head>
+        <link rel="manifest" href="/site.webmanifest" />
+      </head>
       <body className={inter.className}>
         <Favicon />
         <ThemeProvider defaultTheme="dark">

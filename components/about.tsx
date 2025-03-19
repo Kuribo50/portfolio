@@ -70,7 +70,7 @@ export default function About() {
               <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-purple-600/50 rounded-xl z-0" />
               {badges.map((badge, index) => (
                 <div
-                  key={badge.title}
+                  key={index}
                   className={`absolute ${badge.position === "top-left" ? "-top-6 -left-6" : "-bottom-4 right-12"
                     } p-3 sm:p-4 bg-gradient-to-${badge.position === "top-left" ? "br" : "tr"
                     } from-pink-900 to-purple-900/40 backdrop-blur-sm rounded-xl border border-[#2a2a3e] z-20`}
