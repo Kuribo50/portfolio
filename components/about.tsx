@@ -18,15 +18,15 @@ const badges = [
   {
     position: "top-left",
     icon: <Coffee className="text-purple-400 w-5 h-5" />,
-    title: "Impulsado por",
-    subtitle: <span><span className="text-amber-400">Café</span> y <span className="text-red-600/90">Pasión</span></span>,
+    title: <span className="text-400">Impulsado por</span>,
+    subtitle: <span><span className="text-rose-400/90">Café</span> y <span className="text-rose-600">Pasión</span></span>,
     gradient: "from-blue-900 to-purple-900/40"
   },
   {
     position: "bottom-right",
     icon: <Award className="text-purple-400 w-5 h-5" />,
-    title: "Certificado",
-    subtitle: "Desarrollador Full Stack",
+    title: <span className="text-rose-100">Certificado</span>,
+    subtitle: <span className="text-rose-400">Desarrollador Full Stack</span>,
     gradient: "from-blue-900 to-purple-900/40"
   }
 ]
@@ -63,7 +63,7 @@ export default function About() {
                     whileHover={{ scale: 1.1 }}
                     className="bg-purple-500/80 backdrop-blur-md px-8 py-4 rounded-full shadow-lg"
                   >
-                    <h3 className="text-3xl md:text-4xl font-bold text-white">¡HOLA!</h3>
+                    <h3 className="text-3xl md:text-4xl font-bold text-white dark:text-white">¡HOLA!</h3>
                   </motion.div>
                 </div>
               </div>

@@ -247,7 +247,7 @@ body, a, button, svg {
 /* Estilos específicos para tema oscuro */
 [data-theme="dark"] {
   h1, h2, h3, h4, h5, h6 {
-    color: #8A67A0;
+    color: #e8e6e9;
   }
   
   .text-section-title {

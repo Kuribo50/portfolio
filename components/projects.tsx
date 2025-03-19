@@ -113,7 +113,7 @@ export default function Projects() {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-black/80 hover:bg-black rounded-full w-10 h-10 
+                        className="bg-purple-600 rounded-full w-10 h-10 
                           flex items-center justify-center transform translate-y-2 opacity-0 
                           group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
                       >
@@ -121,7 +121,7 @@ export default function Projects() {
                       </a>
                       <a
                         href={project.liveUrl}
-                        className="bg-purple-600/90 hover:bg-purple-600 rounded-full w-10 h-10 
+                        className="bg-purple-600 rounded-full w-10 h-10 
                           flex items-center justify-center transform translate-y-2 opacity-0 
                           group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
                       >

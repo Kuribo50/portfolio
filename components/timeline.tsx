@@ -40,10 +40,10 @@ export default function Timeline() {
     >
       <div className="container relative z-10 mx-auto max-w-7xl">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20, rotate: -5 }}
+          whileInView={{ opacity: 1, y: 0, rotate: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
           className="text-left mb-12 md:mb-16"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#6A4780] mb-3 md:mb-5 pb-1">
@@ -68,10 +68,15 @@ export default function Timeline() {
           {timelineItems.map((item, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 20, rotate: index % 2 === 0 ? -10 : 10 }}
+              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ 
+                duration: 0.4, 
+                delay: index * 0.05,
+                type: "spring",
+                stiffness: 100
+              }}
               className={`relative flex flex-col md:flex-row items-start gap-6 md:gap-12 mb-12 md:mb-20 ${
                 index % 2 === 0 ? "md:flex-row-reverse" : ""
               }`}
@@ -92,10 +97,10 @@ export default function Timeline() {
                   style={{
                     boxShadow: "0 0 20px rgba(168, 85, 247, 0.3)"
                   }}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.03, rotate: 1 }}
+                  whileTap={{ scale: 0.95, rotate: -1 }}
                 >
-                  <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-pink-600/30 dark:text-pink-300 text-black border border-pink-800 mb-3">
+                  <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-white dark:text-pink-300 text-black border border-pink-800 mb-3">
                     {item.year}
                   </span>
                   <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-[#6A4780]">{item.title}</h3>

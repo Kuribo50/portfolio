@@ -6,6 +6,7 @@ import { ThemeProvider } from "../components/theme-provider"
 import GradientBackground from "../components/gradient-background"
 import Favicon from '../components/favicon'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -98,6 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <GradientBackground />
             {children}
             <SpeedInsights />
+            <Analytics />
           </ActiveSectionProvider>
         </ThemeProvider>
       </body>

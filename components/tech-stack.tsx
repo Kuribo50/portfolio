@@ -26,105 +26,120 @@ const technologies = [
     icon: <SiHtml5 className="w-8 h-8 text-[#E34F26]" />,
     sizeClass: "col-span-1",
     category: "Frontend",
-    docUrl: "https://developer.mozilla.org/en-US/docs/Web/HTML"
+    docUrl: "https://developer.mozilla.org/en-US/docs/Web/HTML",
+    hoverColor: "hover:bg-[#E34F26]/40"
   },
   {
     name: "CSS",
     icon: <SiCss3 className="w-8 h-8 text-[#1572B6]" />,
     sizeClass: "col-span-1",
     category: "Frontend",
-    docUrl: "https://developer.mozilla.org/en-US/docs/Web/CSS"
+    docUrl: "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    hoverColor: "hover:bg-[#1572B6]/40"
   },
   {
     name: "JavaScript",
     icon: <SiJavascript className="w-8 h-8 text-[#F7DF1E]" />,
     sizeClass: "col-span-1",
     category: "Frontend",
-    docUrl: "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    docUrl: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    hoverColor: "hover:bg-[#F7DF1E]/40"
   },
   {
     name: "TypeScript",
     icon: <SiTypescript className="w-8 h-8 text-[#3178C6]" />,
     sizeClass: "col-span-1",
     category: "Frontend",
-    docUrl: "https://www.typescriptlang.org/docs/"
+    docUrl: "https://www.typescriptlang.org/docs/",
+    hoverColor: "hover:bg-[#3178C6]/40"
   },
   {
     name: "Next.js",
-    icon: <SiNextdotjs className="w-8 h-8" />,
+    icon: <SiNextdotjs className="w-8 h-8 text-black" />,
     sizeClass: "col-span-1",
     category: "Frontend",
-    docUrl: "https://nextjs.org/docs"
+    docUrl: "https://nextjs.org/docs",
+    hoverColor: "hover:bg-[#000000]/40"
   },
   {
     name: "Astro",
     icon: <SiAstro className="w-8 h-8 text-[#FF5D01]" />,
     sizeClass: "col-span-1",
     category: "Frontend",
-    docUrl: "https://docs.astro.build"
+    docUrl: "https://docs.astro.build",
+    hoverColor: "hover:bg-[#FF5D01]/40"
   },
   {
     name: "React",
     icon: <SiReact className="w-8 h-8 text-[#61DAFB]" />,
     sizeClass: "col-span-1",
     category: "Frontend",
-    docUrl: "https://react.dev"
+    docUrl: "https://react.dev",
+    hoverColor: "hover:bg-[#61DAFB]/40"
   },
   {
     name: "Python",
     icon: <SiPython className="w-8 h-8 text-[#0d3c72]" />,
     sizeClass: "col-span-1",
     category: "Backend",
-    docUrl: "https://docs.python.org"
+    docUrl: "https://docs.python.org",
+    hoverColor: "hover:bg-[#0d3c72]/40"
   },
   {
     name: "Django",
     icon: <SiDjango className="w-8 h-8 text-[#188b31]" />,
     sizeClass: "col-span-1",
     category: "Backend",
-    docUrl: "https://docs.djangoproject.com"
+    docUrl: "https://docs.djangoproject.com",
+    hoverColor: "hover:bg-[#188b31]/40"
   },
   {
     name: "MySQL",
     icon: <SiMysql className="w-8 h-8 text-[#a5b0b9]" />,
     sizeClass: "col-span-1",
     category: "Database",
-    docUrl: "https://dev.mysql.com/doc/"
+    docUrl: "https://dev.mysql.com/doc/",
+    hoverColor: "hover:bg-[#a5b0b9]/40"
   },
   {
     name: "PostgreSQL",
     icon: <SiPostgresql className="w-8 h-8 text-[#4169E1]" />,
     sizeClass: "col-span-1",
     category: "Database",
-    docUrl: "https://www.postgresql.org/docs/"
+    docUrl: "https://www.postgresql.org/docs/",
+    hoverColor: "hover:bg-[#4169E1]/40"
   },
   {
     name: "Docker",
     icon: <SiDocker className="w-8 h-8 text-[#2496ED]" />,
     sizeClass: "col-span-1",
     category: "DevOps",
-    docUrl: "https://docs.docker.com"
+    docUrl: "https://docs.docker.com",
+    hoverColor: "hover:bg-[#2496ED]/40"
   },
   {
     name: "Git",
     icon: <SiGit className="w-8 h-8 text-[#F05032]" />,
     sizeClass: "col-span-1",
     category: "DevOps",
-    docUrl: "https://git-scm.com/doc"
+    docUrl: "https://git-scm.com/doc",
+    hoverColor: "hover:bg-[#F05032]/40"
   },
   {
     name: ".NET",
     icon: <SiDotnet className="w-8 h-8 text-[#512BD4]" />,
     sizeClass: "col-span-1",
     category: "Backend",
-    docUrl: "https://learn.microsoft.com/en-us/dotnet/"
+    docUrl: "https://learn.microsoft.com/en-us/dotnet/",
+    hoverColor: "hover:bg-[#512BD4]/40"
   },
   {
     name: "Kotlin",
     icon: <SiKotlin className="w-8 h-8 text-[#7F52FF]" />,
     sizeClass: "col-span-1",
     category: "Backend",
-    docUrl: "https://kotlinlang.org/docs/"
+    docUrl: "https://kotlinlang.org/docs/",
+    hoverColor: "hover:bg-[#7F52FF]/40"
   },
 ]
 
@@ -144,8 +159,8 @@ const TechCard = ({ tech, borderColorClass }: { tech: any, borderColorClass: str
   return (
     <motion.div
       key={tech.name}
-      className={`relative flex flex-col items-center px-4 py-5 rounded-lg bg-black/10 backdrop-blur-sm border border-${borderColorClass} 
-        transition-all duration-300 hover:bg-black/20 hover:-translate-y-1 cursor-pointer neon-border glass-card`}
+      className={`relative flex flex-col items-center px-4 py-5 rounded-lg bg-white backdrop-blur-sm border border-${borderColorClass} 
+        transition-all duration-300 ${tech.hoverColor} hover:-translate-y-1 cursor-pointer neon-border glass-card shadow-lg shadow-${borderColorClass} hover:shadow-${borderColorClass}/50`}
       whileHover={{ scale: 1.05 }}
       onClick={() => !isMobile && window.open(tech.docUrl, '_blank')}
     >
