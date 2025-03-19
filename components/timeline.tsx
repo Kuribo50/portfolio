@@ -95,7 +95,7 @@ export default function Timeline() {
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-pink-600/30 text-pink-300 border border-pink-800 mb-3">
+                  <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-pink-600/30 dark:text-pink-300 text-black border border-pink-800 mb-3">
                     {item.year}
                   </span>
                   <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-2 text-[#6A4780]">{item.title}</h3>

@@ -34,7 +34,6 @@ const ProjectContext: React.FC<ProjectContextProps> = ({ contextData }) => {
               {contextData.description}
             </p>
           </motion.div>
-          
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -75,7 +74,6 @@ const ProjectContext: React.FC<ProjectContextProps> = ({ contextData }) => {
                   </li>
                 ))}
               </ul>
-              
               <p className="text-white/80 text-base sm:text-lg mt-6">
                 {contextData.conclusion}
               </p>
