@@ -20,33 +20,15 @@ export default function Contact() {
   }
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    const templateParams = {
+      name: formData.name,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    };
     
-    // Create form data for sending email
-    const formDataToSend = new FormData()
-    formDataToSend.append('name', formData.name)
-    formDataToSend.append('email', formData.email)
-    formDataToSend.append('subject', formData.subject)
-    formDataToSend.append('message', formData.message)
-    formDataToSend.append('to', 'martin.beroiza@gmail.com')
-    
-    fetch('https://formsubmit.co/martin.beroiza@gmail.com', {
-      method: 'POST',
-      body: formDataToSend,
-    })
-      .then(response => {
-        if (response.ok) {
-          // Reset form
-          setFormData({ name: "", email: "", subject: "", message: "" })
-          alert("¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.")
-        } else {
-          throw new Error('Error al enviar el formulario')
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error)
-        alert('Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo.')
-      })
   }
 
   return (
@@ -69,7 +51,7 @@ export default function Contact() {
           >
             <h3 className="text-xl sm:text-2xl font-bold mb-4 text-[#6A4780]">Información de Contacto</h3>
             <p className="text-white/80 mb-6 text-sm sm:text-base md:text-lg">
-              No dudes en contactarme a través de cualquiera de estos metodos. Estoy abierto a discutir nuevos proyectos,
+              No dudes en contactarme a través de cualquiera de estos métodos. Estoy abierto a discutir nuevos proyectos,
               ideas creativas u oportunidades para ser parte de tu visión ¡Me encantaría escucharte!.
             </p>
 
@@ -132,89 +114,21 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <form
-              onSubmit={handleSubmit}
-              className="bg-transparent backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-[#2a2a3e] hover:border-purple-500 transition-all duration-300 neon-border glass-card"
-              style={{
-                boxShadow: "0 0 10px rgba(168, 85, 247, 0.2)"
-              }}
-            >
+            <form action="https://airform.io/martin.beroiza0@gmail.com" method="post" className="bg-transparent backdrop-blur-sm p-6 sm:p-8 rounded-xl border border-[#2a2a3e] hover:border-purple-500 transition-all duration-300 neon-border glass-card">
               <h3 className="text-xl sm:text-2xl font-bold mb-6 text-white">Enviar un Mensaje</h3>
 
               <div className="space-y-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
-                    Tu Nombre
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-[#1a1a2e] border border-[#2a2a3e] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
-                    placeholder="Nombre completo"
-                  />
+                  <input type="text" name="name" placeholder="Tu Nombre" required className="w-full px-4 py-3 bg-[#1a1a2e] border border-[#2a2a3e] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white" />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
-                    Tu Correo
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-[#1a1a2e] border border-[#2a2a3e] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
-                    placeholder="correo@ejemplo.com"
-                  />
+                  <textarea name="message" placeholder="Escribe tu mensaje aquí..." required rows={5} className="w-full px-4 py-3 bg-[#1a1a2e] border border-[#2a2a3e] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white resize-none" />
                 </div>
 
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-white/80 mb-2">
-                    Asunto
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    required
-                    className="w-full px-4 py-3 bg-[#1a1a2e] border border-[#2a2a3e] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white"
-                    placeholder="¿De qué se trata tu mensaje?"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-2">
-                    Mensaje
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    className="w-full px-4 py-3 bg-[#1a1a2e] border border-[#2a2a3e] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-white resize-none"
-                    placeholder="Escribe tu mensaje aquí..."
-                  />
-                </div>
-
-                <motion.button
-                  type="submit"
-                  className="w-full py-3 px-6 rounded-md bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-all"
-                  whileHover={{ 
-                    boxShadow: "0 0 15px rgba(236, 72, 153, 0.5)"
-                  }}
-                >
+                <button type="submit" className="w-full py-3 px-6 rounded-md bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium flex items-center justify-center gap-2 hover:opacity-90 transition-all">
                   Enviar Mensaje <ArrowRight size={16} />
-                </motion.button>
+                </button>
               </div>
             </form>
           </motion.div>
