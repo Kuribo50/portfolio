@@ -22,6 +22,8 @@ interface ProjectPresentationProps {
 }
 
 const ProjectPresentation: React.FC<ProjectPresentationProps> = ({ presentationData }) => {
+  const isSvgImage = presentationData.image?.toLowerCase().endsWith(".svg")
+
   return (
     <section id="presentation" 
     className="relative w-full py-20 md:py-28 px-6 md:px-12 lg:px-24 overflow-hidden">
@@ -98,7 +100,7 @@ const ProjectPresentation: React.FC<ProjectPresentationProps> = ({ presentationD
                 src={presentationData.image || "/placeholder.svg"}
                 alt={presentationData.title}
                 fill
-                className="object-cover"
+                className={isSvgImage ? "object-contain object-center p-6" : "object-cover"}
                 sizes="(max-width: 768px) 100vw, 50vw"
                 priority
               />

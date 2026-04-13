@@ -94,7 +94,11 @@ export default function Projects() {
                     <Image
                       src={project.image || "/placeholder.svg"}
                       alt={project.title}
-                      className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                      className={`w-full h-full ${
+                        project.image?.toLowerCase().endsWith(".svg")
+                          ? "object-contain object-center p-4"
+                          : "object-cover"
+                      } transform group-hover:scale-105 transition-transform duration-500`}
                       width={600}
                       height={400}
                     />

@@ -19,7 +19,7 @@ export const projects: Project[] = [
   {
     title: "Sistema de Mantenciones",
     description: "Aplicación para la gestión de mantenimientos preventivos y correctivos de equipamiento clínico. Incluye flujos de trabajo guiados y dashboards para la trazabilidad operativa de activos institucionales.",
-    image: "/imagesProyectos/SBSERVIU/Foto3.webp",
+    image: "/imagesProyectos/Mantenciones/simac-logo.svg",
     tags: ["Next.js", "React", "PostgreSQL", "Tailwind CSS"],
     liveUrl: "/projects/mantenciones",
     githubUrl: "#",
@@ -30,14 +30,6 @@ export const projects: Project[] = [
     image: "/imagesProyectos/SBSERVIU/Foto4.webp",
     tags: ["FastAPI", "React", "PostgreSQL", "Docker"],
     liveUrl: "/projects/convenios",
-    githubUrl: "#",
-  },
-  {
-    title: "Intranet Institucional",
-    description: "Portal centralizado para la gestión de información interna y herramientas operativas. Facilita el acceso a recursos críticos y optimiza la comunicación administrativa en recintos de salud.",
-    image: "/imagesProyectos/SBSERVIU/ServiuFoto.webp",
-    tags: ["Django", "Python", "PostgreSQL", "Next.js"],
-    liveUrl: "/projects/intranet",
     githubUrl: "#",
   },
   {

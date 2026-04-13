@@ -162,7 +162,7 @@ export const projectDetails: Record<string, any> = {
       title: "SIMAC — Control de Mantenciones Clínicas e Infraestructura para CESFAM",
       description:
         "Plataforma web institucional para gestionar mantenciones preventivas y correctivas, equipos, pautas, planificación, trazabilidad y analítica operativa en un solo entorno.",
-      image: "/imagesProyectos/Mantenciones/LoginSimac.png",
+      image: "/imagesProyectos/Mantenciones/simac-logo.svg",
       tags: [
         "Next.js",
         "React",
@@ -436,56 +436,6 @@ export const projectDetails: Record<string, any> = {
         title: "Flujos de aprobación",
         longDescription:
           "Automatiza el avance de convenios por distintas etapas de revisión y validación, permitiendo un control más ordenado del proceso administrativo.",
-        image: "/imagesProyectos/SBSERVIU/capturas/C_dashboard.webp",
-      },
-    ],
-  },
-
-  intranet: {
-    presentationData: {
-      title: "Intranet Institucional",
-      description:
-        "Portal web interno diseñado para centralizar la comunicación operativa, herramientas administrativas y acceso a información crítica para funcionarios del recinto de salud.",
-      image: "/imagesProyectos/SBSERVIU/ServiuFoto.webp",
-      tags: ["Django", "Python", "PostgreSQL", "Next.js"],
-      liveUrl: "#",
-      githubUrl: "#",
-      duration: "4 meses",
-      team: "1 persona",
-      year: "2024",
-      client: "Recinto de Salud",
-    },
-
-    contextData: {
-      title: "Contexto del proyecto",
-      description:
-        "La comunicación interna dependía en gran medida de correos masivos que se perdían con facilidad, mientras que la información crítica no estaba centralizada.",
-      image: "/imagesProyectos/SBSERVIU/Sedificio.webp",
-      subtitle: "Problemática organizacional:",
-      challenges: [
-        "Correos institucionales ignorados o poco visibles.",
-        "Directorio de funcionarios y anexos desactualizado.",
-        "Protocolos y documentos institucionales dispersos.",
-      ],
-      conclusion:
-        "Se implementó un portal único con acceso seguro y perfiles diferenciados, mejorando el acceso a información clave y la comunicación interna.",
-    },
-
-    developmentProcess: [
-      {
-        title: "Integración de roles y permisos",
-        description:
-          "Se consolidó un sistema de acceso basado en roles y permisos utilizando la capa de autenticación de Django, permitiendo un control más seguro y ordenado de la información.",
-        image: "/imagesProyectos/SBSERVIU/Foto7.webp",
-      },
-    ],
-
-    features: [
-      {
-        icon: <Users className="w-8 h-8 text-purple-500" />,
-        title: "Directorio institucional",
-        longDescription:
-          "Incluye un buscador rápido de funcionarios y áreas, facilitando el acceso a información de contacto y estructura organizacional.",
         image: "/imagesProyectos/SBSERVIU/capturas/C_dashboard.webp",
       },
     ],

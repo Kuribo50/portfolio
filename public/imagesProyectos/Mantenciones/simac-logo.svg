@@ -1,0 +1,10 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="420" fill="white"/>
+  <text x="72" y="292" font-family="Georgia, 'Times New Roman', serif" font-size="280" font-weight="700" fill="#D5A12D">S</text>
+  <text x="268" y="292" font-family="Georgia, 'Times New Roman', serif" font-size="280" font-weight="700" fill="#2D67A8">I</text>
+  <text x="392" y="292" font-family="Georgia, 'Times New Roman', serif" font-size="280" font-weight="700" fill="#41A35B">M</text>
+  <text x="704" y="292" font-family="Georgia, 'Times New Roman', serif" font-size="280" font-weight="700" fill="#2D67A8">A</text>
+  <text x="962" y="292" font-family="Georgia, 'Times New Roman', serif" font-size="280" font-weight="700" fill="#D5A12D">C</text>
+  <path d="M350 143H317V176H284V209H317V242H350V209H383V176H350V143Z" fill="#2D67A8" stroke="#D5A12D" stroke-width="12"/>
+  <path d="M789 210H855L878 188L900 234L922 165L943 210H1014" stroke="#41A35B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
