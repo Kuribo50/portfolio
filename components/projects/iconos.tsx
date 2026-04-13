@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { SiNextdotjs, SiJavascript, SiPython, SiDjango, SiTailwindcss, SiPostgresql, SiDocker } from "react-icons/si"
+import { SiNextdotjs, SiJavascript, SiPython, SiDjango, SiTailwindcss, SiPostgresql, SiDocker, SiReact, SiTypescript, SiNodedotjs, SiPandas, SiPolars, SiRedis } from "react-icons/si"
 
 // Función para obtener el estilo de las etiquetas
 export const getTagStyle = (tag: string) => {
@@ -45,6 +45,12 @@ export const getTagStyle = (tag: string) => {
       return "bg-green-900/30 text-green-300 border-green-800"
     case "docker":
       return "bg-blue-900/30 text-blue-300 border-blue-800"
+    case "pandas":
+      return "bg-indigo-900/30 text-indigo-300 border-indigo-800"
+    case "polars":
+      return "bg-orange-900/30 text-orange-300 border-orange-800"
+    case "bullmq":
+      return "bg-red-900/30 text-red-300 border-red-800"
     default:
       return "bg-gray-900/30 text-gray-300 border-gray-800"
   }
@@ -71,6 +77,18 @@ export const getTagIcon = (tag: string) => {
       return SiPostgresql
     case "docker":
       return SiDocker
+    case "react":
+      return SiReact
+    case "typescript":
+      return SiTypescript
+    case "node.js":
+      return SiNodedotjs
+    case "pandas":
+      return SiPandas
+    case "polars":
+      return SiPolars
+    case "redis":
+      return SiRedis
     default:
       return null
   }

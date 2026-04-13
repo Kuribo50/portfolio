@@ -1,38 +1,10 @@
 "use client"
 
+import { timelineItems } from "@/data/experience"
 import { motion } from "framer-motion"
 import { Briefcase, GraduationCap } from "lucide-react"
 
-const timelineItems = [
-  {
-    year: "2024 - 2025",
-    title: "Practica Profesional Serviu Región del Biobío",
-    company: "Practicante",
-    description: "Desarrollé durante 3 meses una aplicación web utilizando tecnologías como React, Next.js, Python, DJangoRest y PostgresSQL para implementar un sistema de gestión de bodega en el área de TI. Este sistema optimiza la entrega y recepción de equipos y suministros, mejorando la eficiencia en la administración de inventario del sector tecnológico.",
-    type: "work",
-  },
-  {
-    year: "2022 - 2024",
-    title: "Titulado Técnico Analista Programador",
-    company: "Instituto Profesional Dr. Virginio Gómez G.",
-    description: "Titulado en Analista Programador, con sólidos conocimientos en bases de datos, metodologías de desarrollo y creación de sistemas web y móviles.",
-    type: "education",
-  },
-]
-
 export default function Timeline() {
-  // Función para manejar el desplazamiento suave
-  const handleScrollToSection = (e: React.MouseEvent, sectionId: string) => {
-    e.preventDefault()
-    const targetElement = document.getElementById(sectionId)
-    if (targetElement) {
-      window.scrollTo({
-        top: targetElement.offsetTop - 100,
-        behavior: "smooth",
-      })
-    }
-  }
-
   return (
     <section 
       id="timeline" 
@@ -55,7 +27,6 @@ export default function Timeline() {
         </motion.div>
 
         <div className="relative">
-          {/* Línea de la timeline */}
           <div 
             className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-px bg-gradient-animate" 
             style={{
@@ -81,7 +52,6 @@ export default function Timeline() {
                 index % 2 === 0 ? "md:flex-row-reverse" : ""
               }`}
             >
-              {/* Punto de la timeline */}
               <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 w-8 h-8 md:w-12 md:h-12 rounded-full bg-black/40 backdrop-blur-sm border-2 border-purple-600 flex items-center justify-center z-10 shadow-lg shadow-purple-500/20">
                 {item.type === "work" ? (
                   <Briefcase className="w-3 h-3 md:w-5 md:h-5 text-pink-400" />
@@ -90,7 +60,6 @@ export default function Timeline() {
                 )}
               </div>
 
-              {/* Contenido */}
               <div className={`w-full pl-12 md:pl-0 md:w-1/2 ${index % 2 === 0 ? "md:pr-20" : "md:pl-20"}`}>
                 <motion.div 
                   className="bg-black/20 backdrop-blur-sm p-5 sm:p-6 md:p-7 rounded-xl border border-[#2a2a3e] hover:border-purple-500 transition-all duration-300 hover:-translate-y-1 neon-border glass-card timeline-item"
@@ -109,7 +78,6 @@ export default function Timeline() {
                 </motion.div>
               </div>
 
-              {/* Div vacío para mantener la estructura */}
               <div className="hidden md:block w-1/2" />
             </motion.div>
           ))}

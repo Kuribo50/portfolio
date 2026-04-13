@@ -81,14 +81,7 @@ const ProjectPresentation: React.FC<ProjectPresentationProps> = ({ presentationD
               >
                 <Github className="h-5 w-5" /> Ver Código
               </a>
-              <a
-                href={presentationData.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium flex items-center gap-2 hover:opacity-90 transition-all"
-              >
-                Ver Demo <ExternalLink className="h-5 w-5" />
-              </a>
+
             </div>
           </motion.div>
 

@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronUp, ChevronDown } from "lucide-react";
 
 interface Feature {
   icon: React.ReactNode;
@@ -17,238 +18,276 @@ interface FeaturesSectionProps {
 
 const FeaturesSection: React.FC<FeaturesSectionProps> = ({ features }) => {
   const [selectedFeature, setSelectedFeature] = useState(0);
-  const [startIndex, setStartIndex] = useState(0);
-  const [itemsToShow, setItemsToShow] = useState(4);
+  const [direction, setDirection] = useState(0); // 1 = next (slide up), -1 = prev (slide down)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const thumbnailsRef = useRef<HTMLDivElement>(null);
 
-  // Ajusta el número de miniaturas a mostrar según el ancho de la pantalla
   useEffect(() => {
-    const updateItemsToShow = () => {
-      if (window.innerWidth < 640) {
-        setItemsToShow(2); // Mostrar 2 elementos en móvil
-      } else if (window.innerWidth < 1024) {
-        setItemsToShow(3);
-      } else {
-        setItemsToShow(4);
+    setMounted(true);
+  }, []);
+
+  // Lock body scroll and HIDE NAVBAR when modal is open
+  useEffect(() => {
+    const header = document.querySelector('header');
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+      if (header) {
+        header.style.opacity = '0';
+        header.style.pointerEvents = 'none';
+        header.style.transition = 'opacity 0.3s ease';
+      }
+    } else {
+      document.body.style.overflow = '';
+      if (header) {
+        header.style.opacity = '1';
+        header.style.pointerEvents = 'auto';
+      }
+    }
+    return () => {
+      document.body.style.overflow = '';
+      if (header) {
+        header.style.opacity = '1';
+        header.style.pointerEvents = 'auto';
       }
     };
-    updateItemsToShow();
-    window.addEventListener("resize", updateItemsToShow);
-    return () => window.removeEventListener("resize", updateItemsToShow);
-  }, []);
-  const nextSlide = () => {
-    setStartIndex((prev) => (prev + 1) % features.length);
+  }, [isModalOpen]);
+
+  // Auto-scroll logic when next/prev arrows are pressed
+  useEffect(() => {
+    if (thumbnailsRef.current) {
+      const activeElement = thumbnailsRef.current.children[selectedFeature] as HTMLElement;
+      if (activeElement) {
+        const container = thumbnailsRef.current;
+        const scrollTarget = activeElement.offsetTop - container.offsetTop - (container.clientHeight / 2) + (activeElement.clientHeight / 2);
+        
+        if (window.innerWidth >= 1024) {
+           container.scrollTo({ top: scrollTarget > 0 ? scrollTarget : 0, behavior: "smooth" });
+        } else {
+           const scrollTargetX = activeElement.offsetLeft - container.offsetLeft - (container.clientWidth / 2) + (activeElement.clientWidth / 2);
+           container.scrollTo({ left: scrollTargetX > 0 ? scrollTargetX : 0, behavior: "smooth" });
+        }
+      }
+    }
+  }, [selectedFeature]);
+
+  const navigateFeatures = (newIndex: number) => {
+    setDirection(newIndex > selectedFeature ? 1 : -1);
+    setSelectedFeature(newIndex);
   };
 
-  const prevSlide = () => {
-    setStartIndex((prev) => (prev - 1 + features.length) % features.length);
+  const variants = {
+    initial: (direction: number) => ({
+      y: direction > 0 ? 100 : -100,
+      opacity: 0,
+    }),
+    animate: {
+      y: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      y: direction > 0 ? -100 : 100,
+      opacity: 0,
+    }),
   };
-
-  // Add this near your other state declarations at the top of the component
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-      <section
-        id="features"  // Updated ID
-        className="relative w-full py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-12 lg:px-24 overflow-hidden"
-      >
-        <div className="container relative z-10 mx-auto max-w-7xl">
-          {/* Título y descripción */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12 sm:mb-16"
-          >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600 mb-4 pb-1">
-              Funcionalidades
-            </h2>
-  
-          </motion.div>
-  
-          <div className="flex flex-col gap-4 md:gap-8">
-            {/* Sección principal (descripción + imagen) */}
-            <div className="flex flex-col lg:flex-row gap-4 md:gap-8 mb-8 md:mb-12">
-              {/* Descripción */}
-              <div className="lg:w-1/3 w-full relative">
-                <div className="absolute -bottom-4 -right-4 w-full h-[calc(100%+1rem)] border-2 border-purple-600/50 rounded-xl" />
-                <div className="p-4 sm:p-6 h-full rounded-xl bg-transparent backdrop-blur-sm border border-purple-500/30 relative z-10">
-                  <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-                    <div className="text-purple-500">{features[selectedFeature].icon}</div>
-                    <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-white text-left">
-                      {features[selectedFeature].title}
-                    </h3>
-                  </div>
-                  <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white/80 text-left leading-relaxed">
-                    {features[selectedFeature].longDescription}
-                  </p>
-                </div>
-              </div>
-              {/* Imagen principal */}
-              <div className="lg:w-2/3 w-full relative">
-                <div className="absolute -bottom-4 -right-4 w-full h-[calc(100%+1rem)] border-2 border-purple-600/50 rounded-xl" />
-                <div 
-                  className="relative w-full h-[200px] sm:h-[300px] md:h-[400px] rounded-xl overflow-hidden z-10 cursor-pointer"
-                  onClick={() => setIsModalOpen(true)}
-                >
-                  <Image
-                    src={features[selectedFeature].image}
-                    alt={features[selectedFeature].title}
-                    fill
-                    className="object-contain bg-black/20 backdrop-blur-sm"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 66vw, 50vw"
-                    priority
-                  />
-                </div>
+    <section
+      id="features"
+      className="relative w-full py-16 md:py-24 px-6 md:px-12 lg:px-24 overflow-hidden"
+    >
+      <div className="container relative z-10 mx-auto max-w-[1500px]">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10"
+        >
+          <h2 className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600 mb-4 pb-1">
+            Funcionalidades Clave
+          </h2>
+          <p className="text-white/60 text-lg">
+            Explora las características principales seleccionando una miniatura.
+          </p>
+        </motion.div>
+
+        {/* Estilos para el scroll oculto */}
+        <style dangerouslySetInnerHTML={{__html: `
+          .hide-scrollbars::-webkit-scrollbar { display: none; }
+          .hide-scrollbars { -ms-overflow-style: none; scrollbar-width: none; }
+        `}} />
+
+        <div className="flex flex-col lg:flex-row gap-6 lg:h-[750px] w-full items-stretch">
+          
+          {/* COLUMNA IZQUIERDA: Galería Compacta (Alta Densidad) */}
+          <div className="w-full lg:w-[130px] shrink-0 flex flex-col gap-3">
+            <div className="flex flex-row lg:flex-col gap-2 items-center flex-grow overflow-hidden">
+              {/* Controles Desktop (Arriba) */}
+              <button 
+                onClick={() => navigateFeatures(selectedFeature > 0 ? selectedFeature - 1 : features.length - 1)}
+                className="hidden lg:flex w-full items-center justify-center p-2 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-all text-white/30 hover:text-white group"
+              >
+                <ChevronUp className="w-4 h-4" />
+              </button>
+
+              {/* Contenedor de scroll de miniaturas - MÁXIMA DENSIDAD */}
+              <div 
+                ref={thumbnailsRef}
+                className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-y-auto hide-scrollbars flex-grow py-1 w-full lg:max-h-[650px]"
+              >
+                {features.map((feature, index) => {
+                  const isActive = selectedFeature === index;
+                  return (
+                    <motion.button
+                      key={index}
+                      onClick={() => setSelectedFeature(index)}
+                      className={`relative shrink-0 w-20 lg:w-full aspect-square rounded-lg overflow-hidden transition-all duration-300 border
+                        ${isActive ? "border-purple-500 scale-100 shadow-[0_0_10px_rgba(168,85,247,0.4)] z-10" : "border-transparent opacity-30 hover:opacity-100 scale-90 z-0 hover:border-white/10"}
+                      `}
+                      whileHover={{ scale: isActive ? 1.02 : 0.95 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <Image
+                        src={feature.image}
+                        alt={feature.title}
+                        fill
+                        className="object-cover"
+                        sizes="150px"
+                      />
+                      {!isActive && <div className="absolute inset-0 bg-black/40" />}
+                    </motion.button>
+                  );
+                })}
               </div>
 
-              {/* Modal for full-size image */}
-              {isModalOpen && (
-                <div 
-                  className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-                  onClick={(e) => {
-                    if (e.target === e.currentTarget) {
-                      setIsModalOpen(false);
-                    }
-                  }}
+              {/* Controles Desktop (Abajo) */}
+              <button 
+                onClick={() => navigateFeatures(selectedFeature < features.length - 1 ? selectedFeature + 1 : 0)}
+                className="hidden lg:flex w-full items-center justify-center p-2 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-all text-white/30 hover:text-white group"
+              >
+                <ChevronDown className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Contador Compacto */}
+            <div className="w-full text-center py-2">
+               <span className="text-[10px] font-medium text-white/20 tracking-widest uppercase">
+                  {selectedFeature + 1} / {features.length}
+               </span>
+            </div>
+          </div>
+
+          {/* ÁREA PRINCIPAL: Imagen + Info (Ocupa todo el resto) */}
+          <div className="flex-1 flex flex-col gap-6">
+            
+            {/* Imagen Hero (Maximizada) */}
+            <div className="flex-1 relative rounded-[2.5rem] overflow-hidden glass-card border border-white/5 bg-black/40 min-h-[400px] flex items-center justify-center group cursor-pointer shadow-2xl transition-all duration-500 hover:border-purple-500/20"
+                 onClick={() => setIsModalOpen(true)}
+            >
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={selectedFeature}
+                  custom={direction}
+                  variants={variants}
+                  initial="initial"
+                  animate="animate"
+                  exit="exit"
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 flex items-center justify-center p-0"
                 >
-                  <div className="relative w-full max-w-7xl h-[80vh] rounded-xl overflow-hidden">
-                    <button
-                      onClick={() => setIsModalOpen(false)}
-                      className="absolute top-4 right-4 z-50 p-2 rounded-full bg-black/50 hover:bg-black/70 transition-colors"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
+                  <div className="relative w-full h-full">
                     <Image
                       src={features[selectedFeature].image}
                       alt={features[selectedFeature].title}
                       fill
                       className="object-contain"
-                      sizes="100vw"
+                      sizes="(max-width: 1024px) 100vw, 80vw"
                       priority
                     />
                   </div>
-                </div>
-              )}
-            </div>
-  
-            {/* Carrusel de miniaturas - Versión móvil rediseñada */}
-            <div className="w-full">
-              {/* Enfoques alternativos para móvil */}
-              <div className="block sm:hidden">
-                {/* Diseño tipo "grid" para móvil */}
-                <div className="grid grid-cols-2 gap-2">
-                  {features.map((feature, index) => (
-                    <div
-                      key={`mobile-${feature.title}-${index}`}
-                      className={`
-                        cursor-pointer rounded-lg overflow-hidden
-                        ${selectedFeature === index ? "ring-2 ring-purple-500" : ""}
-                      `}
-                      onClick={() => setSelectedFeature(index)}
-                    >
-                      <div className="relative h-20">
-                        <Image
-                          src={feature.image}
-                          alt={feature.title}
-                          fill
-                          className="object-cover"
-                          sizes="(max-width: 640px) 50vw, 25vw"
-                        />
-                        <div
-                          className={`absolute inset-0 bg-black/40 transition-opacity duration-300 
-                            ${selectedFeature === index ? "opacity-0" : "opacity-40"} 
-                            hover:opacity-0
-                          `}
-                        ></div>
-                        <div className="absolute bottom-0 left-0 right-0 p-1 bg-gradient-to-t from-black/80 to-transparent">
-                          <p className="text-xs text-white text-center leading-tight font-medium truncate">
-                            {feature.title}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-  
-              {/* Carrusel estándar para tablet/desktop */}
-              <div className="relative hidden sm:block max-w-[1000px] mx-auto">
-                <div className="overflow-hidden">
-                  <div
-                    className="flex gap-3 md:gap-4 transition-transform duration-1000 ease-in-out"
-                    style={{
-                      transform:
-                        features.length > itemsToShow
-                          ? `translateX(-${startIndex * (100 / itemsToShow)}%)`
-                          : "none",
-                    }}
-                  >
-                    {[...(features.length > itemsToShow ? [...features, ...features] : features)].map(
-                      (feature, index) => (
-                        <motion.div
-                          key={`${feature.title}-${index}`}
-                          className={`flex-none 
-                            w-[calc(33.33%-8px)] md:w-[calc(25%-12px)] 
-                            cursor-pointer rounded-xl overflow-hidden 
-                            ${selectedFeature === index % features.length ? "ring-2 ring-purple-500" : ""}
-                          `}
-                          onClick={() => setSelectedFeature(index % features.length)}
-                          whileHover={{ scale: 1.02 }}
-                          transition={{ duration: 0.2 }}
-                        >
-                          <div className="relative h-[100px] md:h-[130px]">
-                            <Image
-                              src={feature.image}
-                              alt={feature.title}
-                              fill
-                              className="object-cover"
-                              sizes="(max-width: 1024px) 33vw, 25vw"
-                            />
-                            <div
-                              className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
-                                selectedFeature === index % features.length
-                                  ? "opacity-0"
-                                  : "opacity-40"
-                              } hover:opacity-0`}
-                            ></div>
-                            <div className="absolute bottom-0 left-0 right-0 p-1.5 bg-gradient-to-t from-black/80 to-transparent">
-                              <p className="text-xs md:text-sm text-white text-center leading-tight">
-                                {feature.title}
-                              </p>
-                            </div>
-                          </div>
-                        </motion.div>
-                      )
-                    )}
-                  </div>
-                </div>
-  
-                {/* Botones laterales para tablet y desktop */}
-                {features.length > itemsToShow && (
-                  <>
-                    <button
-                      onClick={prevSlide}
-                      className="absolute -left-2 md:left-0 top-1/2 -translate-y-1/2 z-10 p-1.5 rounded-full bg-purple-500/20 hover:bg-purple-500/40 transition-colors"
-                    >
-                      <ChevronLeft className="w-4 md:w-5 h-4 md:h-5 text-white" />
-                    </button>
-                    <button
-                      onClick={nextSlide}
-                      className="absolute -right-2 md:right-0 top-1/2 -translate-y-1/2 z-10 p-1.5 rounded-full bg-purple-500/20 hover:bg-purple-500/40 transition-colors"
-                    >
-                      <ChevronRight className="w-4 md:w-5 h-4 md:h-5 text-white" />
-                    </button>
-                  </>
-                )}
+                </motion.div>
+              </AnimatePresence>
+              
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center z-10 pointer-events-none">
+                <span className="opacity-0 group-hover:opacity-100 transition-all duration-300 bg-white/10 text-white px-8 py-3 rounded-full backdrop-blur-xl font-bold tracking-[0.2em] border border-white/10 text-[10px] transform translate-y-2 group-hover:translate-y-0">
+                  VER EN GRANDE
+                </span>
               </div>
             </div>
+
+            {/* Información Inferior (Limpia - Sin Movimiento) */}
+            <div className="px-6 lg:px-10 pb-4">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={selectedFeature}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <h3 className="text-xl lg:text-3xl font-bold text-white mb-3 tracking-tight">
+                    {features[selectedFeature].title}
+                  </h3>
+                  <p className="text-white/40 text-sm lg:text-lg leading-relaxed max-w-4xl">
+                    {features[selectedFeature].longDescription || features[selectedFeature].description}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
           </div>
+
         </div>
-      </section>
-    );
+
+        {/* Modal Portaled */}
+        {mounted && typeof document !== 'undefined' && createPortal(
+          <AnimatePresence>
+            {isModalOpen && (
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                style={{ zIndex: 9999999 }}
+                className="fixed inset-0 bg-black/60 backdrop-blur-3xl flex items-center justify-center p-4 md:p-8 cursor-pointer"
+                onClick={() => setIsModalOpen(false)}
+              >
+                {/* Close Button Fixed Top Right - ABSOLUTAMENTE EN LA ESQUINA */}
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="fixed top-2 right-2 md:top-4 md:right-4 z-[10000000] p-4 rounded-full bg-white/5 hover:bg-white/10 hover:border-white/20 transition-all hover:scale-110 group cursor-pointer"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 md:h-8 md:w-8 text-white/50 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+
+                {/* Main Content Area - CLIC DENTRO NO CIERRA */}
+                <motion.div 
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  exit={{ scale: 0.8, opacity: 0 }}
+                  className="relative w-full max-w-6xl h-[82vh] flex items-center justify-center p-4 cursor-default"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Image
+                    src={features[selectedFeature].image}
+                    alt={features[selectedFeature].title}
+                    fill
+                    className="object-contain drop-shadow-[0_0_80px_rgba(255,255,255,0.15)]"
+                    sizes="100vw"
+                    priority
+                  />
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
+
+      </div>
+    </section>
+  );
 };
 
 export default FeaturesSection;

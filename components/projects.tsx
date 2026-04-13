@@ -5,16 +5,7 @@ import { ArrowUpRight, Github, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
-const projects = [
-  {
-    title: "Sistema de bodega SERVIU",
-    description: "Sistema de gestión de inventario para bodegas públicas con seguimiento en tiempo real, reportes automatizados y control de acceso biométrico.",
-    image: "/imagesProyectos/SBSERVIU/ServiuFoto.webp",
-    tags: ["Next.js", "JavaScript", "Python", "Django", "Tailwind", "PostgreSQL", "Docker"],
-    liveUrl: "/projects/serviu",
-    githubUrl: "https://github.com/Kuribo50/Gestion-de-inventario",
-  },
-]
+import { projects } from "@/data/projects"
 
 // Function to get tag style based on tag name
 const getTagStyle = (tag: string) => {
@@ -69,7 +60,7 @@ export default function Projects() {
       <div className="container relative z-10 mx-auto max-w-7xl">
         <motion.div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16">
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600 mb-2 md:mb-4 pb-1">Proyectos Destacados</h2>
+            <h2 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-blue-500 to-indigo-600 mb-2 md:mb-4 pb-1">Proyectos e Implementaciones</h2>
           </div>
             {/* comentado para poder ocuparlo cuando hayan mas proyectos para mostrar
             <Link
@@ -119,23 +110,16 @@ export default function Projects() {
                       >
                         <Github className="h-5 w-5 text-white" />
                       </a>
-                      <a
-                        href={project.liveUrl}
-                        className="bg-purple-600 rounded-full w-10 h-10 
-                          flex items-center justify-center transform translate-y-2 opacity-0 
-                          group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300"
-                      >
-                        <ExternalLink className="h-5 w-5 text-white" />
-                      </a>
+
                     </div>
                   </div>
                   <div className="flex-grow">
-                    <a href={project.liveUrl} className="group-hover:text-purple-400 transition-colors duration-300">
+                    <Link href={project.liveUrl} className="group-hover:text-purple-400 transition-colors duration-300">
                       <h3 className="text-lg md:text-xl font-semibold mb-2 relative inline-block text-white">
                         {project.title}
                         <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-purple-500 transition-all duration-300 group-hover:w-full"></span>
                       </h3>
-                    </a>
+                    </Link>
                     <p className="text-white/80 mb-4 text-sm leading-relaxed">{project.description}</p>
                   </div>
                   <div className="flex flex-wrap gap-2 mt-auto">
@@ -171,14 +155,14 @@ export default function Projects() {
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h3 className="text-2xl font-bold mb-2 text-white">¿Necesitas un proyecto personalizado?</h3>
-              <p className="text-white/80">Hablemos sobre tus ideas y creemos algo increíble juntos.</p>
+              <h3 className="text-2xl font-bold mb-2 text-white">¿Requieres sistematizar procesos?</h3>
+              <p className="text-white/80">Cuéntame qué desafío operativo enfrentas y analicemos cómo estructurar una solución técnica a medida.</p>
             </div>
             <Link
               href="#contact"
               className="px-6 py-3 rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium flex items-center gap-2 hover:opacity-90 transition-all whitespace-nowrap"
             >
-              Contáctame <ArrowUpRight size={16} />
+              Consultar disponibilidad <ArrowUpRight size={16} />
             </Link>
           </div>
         </motion.div>

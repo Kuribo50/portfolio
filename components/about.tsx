@@ -17,16 +17,16 @@ const stats: { value: string; label: string; }[] = [
 const badges = [
   {
     position: "top-left",
-    icon: <Coffee className="text-purple-400 w-5 h-5" />,
-    title: <span className="text-400">Impulsado por</span>,
-    subtitle: <span><span className="text-rose-400/90">Café</span> y <span className="text-rose-600">Pasión</span></span>,
+    icon: <Code className="text-purple-400 w-5 h-5" />,
+    title: <span className="text-white/60">Perfil Técnico</span>,
+    subtitle: <span><span className="text-rose-400/90">Desarrollo</span> y <span className="text-purple-400">Operaciones</span></span>,
     gradient: "from-blue-900 to-purple-900/40"
   },
   {
     position: "bottom-right",
     icon: <Award className="text-purple-400 w-5 h-5" />,
-    title: <span className="text-rose-100">Certificado</span>,
-    subtitle: <span className="text-rose-400">Desarrollador Full Stack</span>,
+    title: <span className="text-purple-300">Stack Principal</span>,
+    subtitle: <span className="text-blue-400">Next.js, Python</span>,
     gradient: "from-blue-900 to-purple-900/40"
   }
 ]
@@ -48,23 +48,17 @@ export default function About() {
             className="lg:sticky lg:top-24 w-full max-w-lg mx-auto lg:mx-0"
           >
             <div className="relative">
-              <div className="relative z-10 rounded-xl overflow-hidden border border-[#2a2a3e] aspect-[4/5] group">
+              <div className="relative z-10 rounded-2xl overflow-hidden border border-white/10 aspect-[4/5] group shadow-2xl">
                 <Image
                   src="/FOTO.webp"
                   alt="Martin Beroiza"
                   fill
-                  className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
                   priority
                 />
-                {/* Hover Greeting */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-black/40 backdrop-blur-sm">
-                  <motion.div
-                    initial={{ scale: 0.8 }}
-                    whileHover={{ scale: 1.1 }}
-                    className="bg-purple-500/80 backdrop-blur-md px-8 py-4 rounded-full shadow-lg"
-                  >
-                    <h3 className="text-3xl md:text-4xl font-bold text-white dark:text-white">¡HOLA!</h3>
-                  </motion.div>
+                {/* Hover Overlay with Glow */}
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 bg-black/20 backdrop-blur-[2px]">
                 </div>
               </div>
               <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-purple-600/50 rounded-xl z-0" />
@@ -94,29 +88,35 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="w-full max-w-lg mx-auto lg:mx-0"
           >
-            <motion.h3
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-[#6A4780] inline-flex items-center"
+              transition={{ duration: 0.8 }}
+              className="relative mb-6"
             >
-              ¡Hola! Soy Martín Beroiza
-            </motion.h3>
-            <span className="text-2xl ml-2">👋</span>
-            <p className="text-white/80 mb-3 sm:mb-4 text-sm sm:text-base">
-            Tengo 22 años y formación como Analista Programador.
-            Desde siempre me ha fascinado la tecnología, lo que me llevó a iniciar mi carrera en el desarrollo de software hace unos años, con el objetivo de dejar una huella en el mundo a través de proyectos innovadores y desafiantes.
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white mb-2">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-rose-400">
+                  Martín Beroiza
+                </span>
+              </h3>
+              <div className="flex items-center gap-2">
+                <div className="h-[2px] w-12 bg-purple-500 rounded-full" />
+                <span className="text-purple-400 font-medium tracking-widest uppercase text-xs sm:text-sm">
+                  Desarrollador Full Stack
+                </span>
+                <span className="text-2xl animate-bounce">👋</span>
+              </div>
+            </motion.div>
+            <p className="text-white/80 mb-3 sm:mb-4 text-sm sm:text-base leading-relaxed">
+              Soy desarrollador de software enfocado en el diseño e implementación de sistemas internos. Mi experiencia ha estado orientada fundamentalmente a entornos operativos (como el sector salud), construyendo herramientas que digitalizan procesos manuales, centralizan la información y aseguran el correcto control de los datos.
             </p>
-            <p className="text-white/80 mb-6 sm:mb-8 text-sm sm:text-base">
-              Aunque ya he completado mi formación académica, sigo comprometido con el aprendizaje continuo y la
-              exploración de nuevas tecnologías para mantenerme a la vanguardia del desarrollo web. Cuando no estoy
-              programando, me puedes encontrar leyendo sobre tendencias tecnológicas o experimentando con nuevos
-              frameworks. Creo firmemente en crear tecnología que tenga un impacto positivo y mejore la vida de las personas.
+            <p className="text-white/80 mb-6 sm:mb-8 text-sm sm:text-base leading-relaxed">
+              Trabajo principalmente con Python (Django/FastAPI), React/Next.js y bases de datos PostgreSQL. Me especializo en crear software útil que resuelva problemas del día a día, como sistemas de trazabilidad, administración de activos críticos o automatización de validaciones.
             </p>
 
-            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Mis Valores</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Principios de Trabajo</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               {values.map((value, index) => (
                 <motion.div
                   key={value.title}
@@ -124,20 +124,18 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.1 * index }}
-                  className="bg-transparent backdrop-blur-sm p-3 sm:p-4 rounded-xl border-2 border-purple-500/70 transition-all duration-300"
-                  style={{
-                    boxShadow: "0 0 10px rgba(168, 85, 247, 0.6), inset 0 0 5px rgba(168, 85, 247, 0.3)"
-                  }}
+                  className="group bg-white/5 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/10 hover:border-purple-500/50 transition-all duration-500 relative overflow-hidden"
                   whileHover={{
-                    y: -5,
-                    boxShadow: "0 0 15px rgba(168, 85, 247, 0.8), inset 0 0 8px rgba(168, 85, 247, 0.5)"
+                    y: -4,
+                    backgroundColor: "rgba(255, 255, 255, 0.08)",
                   }}
                 >
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-pink-900/30 flex items-center justify-center mb-2 sm:mb-3 border border-pink-800/50">
+                  <div className="absolute -right-4 -top-4 w-12 h-12 bg-purple-500/10 rounded-full blur-2xl group-hover:bg-purple-500/20 transition-colors" />
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center mb-2 border border-white/10 group-hover:border-purple-500/50 transition-colors">
                     {value.icon}
                   </div>
-                  <h4 className="text-sm sm:text-base font-semibold mb-1 text-white">{value.title}</h4>
-                  <p className="text-white/70 text-xs">{value.description}</p>
+                  <h4 className="text-sm sm:text-base font-bold mb-1 text-white group-hover:text-purple-300 transition-colors">{value.title}</h4>
+                  <p className="text-white/60 text-[11px] sm:text-xs leading-snug">{value.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -150,24 +148,24 @@ export default function About() {
 
 const values = [
   {
-    icon: <Code className="w-5 h-5 text-purple-400" />,
-    title: "Código Limpio",
-    description: "Escribir código mantenible, eficiente y bien documentado es mi prioridad.",
+    icon: <Code className="w-4 h-4 text-purple-400" />,
+    title: "Código ordenado",
+    description: "Priorizo arquitecturas limpias y legibles para facilitar el mantenimiento y la transferencia técnica.",
   },
   {
-    icon: <Search className="w-5 h-5 text-purple-400" />,
-    title: "Curiosidad",
-    description: "Siempre investigando nuevas tecnologías y metodos para resolver problemas.",
+    icon: <Search className="w-4 h-4 text-purple-400" />,
+    title: "Visión resolutiva",
+    description: "Analizo el problema operativo de fondo antes de escribir la primera línea de código.",
   },
   {
-    icon: <MessageSquare className="w-5 h-5 text-purple-400" />,
-    title: "Comunicación",
-    description: "Trabajando eficazmente en equipo para lograr objetivos compartidos.",
+    icon: <MessageSquare className="w-4 h-4 text-purple-400" />,
+    title: "Integración de equipo",
+    description: "Comunico avances y bloqueos de forma directa y oportuna para asegurar la continuidad del proyecto.",
   },
   {
-    icon: <Target className="w-5 h-5 text-purple-400" />,
-    title: "Autogestión",
-    description: "Capacidad para organizar y gestionar proyectos de forma autónoma, asegurando calidad y cumplimiento.",
+    icon: <Target className="w-4 h-4 text-purple-400" />,
+    title: "Autonomía en ejecución",
+    description: "Asumo la responsabilidad técnica del flujo completo, desde el diseño de los datos hasta la puesta en marcha.",
   },
 ];
 
