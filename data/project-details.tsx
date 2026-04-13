@@ -27,7 +27,7 @@ export const projectDetails: Record<string, any> = {
     presentationData: {
       title: "Consolidador REM",
       description:
-        "Plataforma web para la consolidación masiva de archivos clínicos REM, diseñada para procesar archivos CSV y ZIP de gran volumen mediante un flujo optimizado y escalable. Incorpora procesamiento asíncrono, cola de espera para cargas concurrentes, detección inteligente de estructura de archivos e interfaz orientada a la eficiencia operativa. Su evolución permitió reducir tareas que antes tomaban horas a ejecuciones de segundos en escenarios optimizados.",
+        "Plataforma web para consolidación masiva de archivos clínicos REM, orientada a reemplazar tareas manuales con un flujo técnico más rápido, consistente y trazable en escenarios de alto volumen.",
       image: "/imagesProyectos/consolidador/Inicio.png",
       tags: [
         "Next.js",

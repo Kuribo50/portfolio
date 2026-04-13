@@ -10,9 +10,9 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: "Consolidador RM",
-    description: "Sistema para la consolidación masiva de resoluciones médicas. Optimiza el procesamiento de datos clínicos mediante parseo eficiente de CSV, reduciendo tiempos de gestión a menos de 15 segundos con validación en tiempo real.",
+    description: "Plataforma para consolidar archivos clínicos REM de forma masiva, reduciendo tareas manuales y tiempos de procesamiento mediante un flujo técnico estable y trazable.",
     image: "/imagesProyectos/consolidador/Inicio.png",
-    tags: ["Next.js", "Python", "Polars", "Tailwind CSS"],
+    tags: ["Next.js", "React", "TypeScript", "Python", "Pandas", "Polars", "Redis", "Docker"],
     liveUrl: "/projects/consolidador-rm",
     githubUrl: "https://github.com/Kuribo50/Consolidador-REM",
   },
@@ -23,14 +23,6 @@ export const projects: Project[] = [
     tags: ["Next.js", "React", "PostgreSQL", "Tailwind CSS"],
     liveUrl: "/projects/mantenciones",
     githubUrl: "https://github.com/Kuribo50/MantencionesSIMAC",
-  },
-  {
-    title: "Sistema de Convenios",
-    description: "Plataforma técnica para la administración y validación de convenios de salud. Automatiza la revisión clínica y el control administrativo de recursos, eliminando cuellos de botella en los flujos de aprobación.",
-    image: "/imagesProyectos/SBSERVIU/Foto4.webp",
-    tags: ["FastAPI", "React", "PostgreSQL", "Docker"],
-    liveUrl: "/projects/convenios",
-    githubUrl: "#",
   },
   {
     title: "Sistema de bodega SERVIU",
