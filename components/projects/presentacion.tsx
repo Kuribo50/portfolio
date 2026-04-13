@@ -2,7 +2,6 @@
 
 import type React from "react"
 import { motion } from "framer-motion"
-import { Github, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import TagComponent from "./iconos"
 
@@ -74,17 +73,6 @@ const ProjectPresentation: React.FC<ProjectPresentationProps> = ({ presentationD
               </motion.div>
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <a
-                href={presentationData.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 rounded-full bg-transparent border border-purple-500 text-white font-medium flex items-center gap-2 hover:bg-purple-500/10 transition-all"
-              >
-                <Github className="h-5 w-5" /> Ver Código
-              </a>
-
-            </div>
           </motion.div>
 
           {/* Right content - Image */}

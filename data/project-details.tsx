@@ -172,7 +172,7 @@ export const projectDetails: Record<string, any> = {
         "Docker",
       ],
       liveUrl: "#",
-      githubUrl: "#",
+      githubUrl: "https://github.com/Kuribo50/MantencionesSIMAC",
       duration: "4 meses",
       team: "1 persona",
       year: "2026",

@@ -22,7 +22,7 @@ export const projects: Project[] = [
     image: "/imagesProyectos/Mantenciones/simac-logo.svg",
     tags: ["Next.js", "React", "PostgreSQL", "Tailwind CSS"],
     liveUrl: "/projects/mantenciones",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Kuribo50/MantencionesSIMAC",
   },
   {
     title: "Sistema de Convenios",
